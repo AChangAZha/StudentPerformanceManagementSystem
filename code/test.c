@@ -13,7 +13,8 @@ int main()
     readFromPgdat();
     /***************************/
 
-    inforSearch();
+    addPgNode();
+    addUgNode();
     /* 请在这里调用需要测试的函数*/
 
 
