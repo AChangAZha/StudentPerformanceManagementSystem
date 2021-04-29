@@ -5,40 +5,43 @@
 #include "model.h"
 #include "inquire.h"
 
-void addUgNode()
+void addUgNode()  //添加本科生
 {
     int sex=0,count=0;
     char tmp[12];
-    char end[]="0";
     ugnode *ug;
+
     while (1)
     {
         count++;
         printf("正在添加第%d名本科生\n",count);
         printf("姓名(最多可输入5个汉字,输入0可结束添加)：");
         scanf("%s",tmp);
-        if(strcmp(tmp,end)==0) break;
-        ug=(ugnode *)malloc(sizeof(ugnode));
+        if(strcmp(tmp,"0")==0) break;  //输入0结束输入
+
+        ug=(ugnode *)malloc(sizeof(ugnode)); //不为0才分配存储空间
         ug->next=NULL;
         strcpy(ug->data.name,tmp);
+		//对比两条链表头结点中的学号，较大者即为最新学号
         ug->data.num=(ugHead->data.num)>(pgHead->data.num)?(ugHead->data.num):(pgHead->data.num);
         ugHead->data.num=ug->data.num+1;
         printf("性别(请选择) 1.男 2.女：");
         do
         {
-            while (scanf("%d", &sex) != 1)
+            while (scanf("%d", &sex)!= 1) //保证输入的是数字
             {
                 printf("错误！请输入正确的数字：");
-                while (getchar() != '\n');
+                while (getchar()!='\n');
             }
-            if (sex != 1 && sex != 2) printf("错误！请输入正确的数字：");
-        } while (sex != 1 && sex != 2);
+            if (sex!=1 && sex!=2) printf("错误！请输入正确的数字：");
+        } while (sex!=1 && sex!=2);
         ug->data.sex=(sex==1)?male:female;
         printf("专业(最多可输入9个汉字)：");
         scanf("%s",ug->data.speciaty);
         printf("班级(最多可输入9个汉字)：");
         scanf("%s",ug->data.classes);
-        ug->data.math=-1;
+
+        ug->data.math=-1; //成绩初始化为-1
         ug->data.english=-1;
         ug->data.cLanguguage=-1;
         ug->data.totalScore=-1;
@@ -46,7 +49,7 @@ void addUgNode()
         ug->data.schoolRank=-1;
         if(ugTail!=NULL) ugTail->next=ug;
         else ugHead->next=ug;
-        ugTail=ug;
+        ugTail=ug; //尾指针后移
         printf("\n");
         sex=0;
     }
@@ -54,19 +57,20 @@ void addUgNode()
     return;
 }
 
-void addPgNode()
+void addPgNode()  //添加研究生
 {
     int sex=0,count=0;
     char tmp[12];
-    char end[]="0";
     pgnode *pg;
+
     while (1)
     {
         count++;
         printf("正在添加第%d名研究生\n",count);
         printf("姓名(最多可输入5个汉字,输入0可结束添加)：");
         scanf("%s",tmp);
-        if(strcmp(tmp,end)==0) break;
+        if(strcmp(tmp,"0")==0) break;
+
         pg=(pgnode *)malloc(sizeof(pgnode));
         pg->next=NULL;
         strcpy(pg->data.name,tmp);
@@ -75,13 +79,13 @@ void addPgNode()
         printf("性别(请选择) 1.男 2.女：");
         do
         {
-            while (scanf("%d", &sex) != 1)
+            while (scanf("%d",&sex)!=1)
             {
                 printf("错误！请输入正确的数字：");
-                while (getchar() != '\n');
+                while (getchar()!='\n');
             }
-            if (sex != 1 && sex != 2) printf("错误！请输入正确的数字：");
-        } while (sex != 1 && sex != 2);
+            if (sex!=1 && sex!=2) printf("错误！请输入正确的数字：");
+        } while (sex!=1 && sex!=2);
         pg->data.sex=(sex==1)?male:female;
         printf("专业(最多可输入9个汉字)：");
         scanf("%s",pg->data.speciaty);
@@ -91,6 +95,7 @@ void addPgNode()
         scanf("%s",pg->data.rschFields);
         printf("导师(最多可输入5个汉字)：");
         scanf("%s",pg->data.advisor);
+
         pg->data.compCourse=-1;
         pg->data.thesis=-1;
         pg->data.totalScore=-1;
@@ -106,15 +111,22 @@ void addPgNode()
     return;
 }
 
-void inforSearch()
+void inforSearch()  //查询学生基本信息
 {
-    int num,opt=0;
+    int num=0,opt=0;
     ugnode *uPtr;
     pgnode *pPtr;
     while(1)
     {
+		//每个学号对应一个学生，不区分本科生和研究生
         printf("请输入学号：");
-        scanf("%d",&num);
+        while (scanf("%d",&num)!=1) //保证输入的数字
+        {
+            printf("错误！请输入数字：");
+            while (getchar()!='\n');
+        }
+		//需要在两个链表中搜寻
+		//调用查找函数(在inquire.c中定义)
         if((uPtr=serchUg(num))!=NULL)
         {
             printf("查询成功，以下是该学生的基本资料：\n");
@@ -137,20 +149,21 @@ void inforSearch()
         printf("请选择 1.继续查询 2.返回：");
         do
         {
-            while (scanf("%d", &opt) != 1)
+            while (scanf("%d", &opt)!=1)
             {
                 printf("错误！请输入正确的数字：");
-                while (getchar() != '\n');
+                while (getchar()!='\n');
             }
-            if (opt != 1 && opt != 2) printf("错误！请输入正确的数字：");
-        } while (opt != 1 && opt != 2);
+            if (opt!=1 && opt!= 2) printf("错误！请输入正确的数字：");
+        } while (opt!=1 && opt!=2);
         printf("\n");
         if(opt==2) return;
-        opt=0;
+        num=0;
+		opt=0;
     }
 }
 
-int alterData()
+int alterData()  //修改学生基本信息
 {
 	int uflag,pflag,n,item,x,fi;
 	ugnode *p;

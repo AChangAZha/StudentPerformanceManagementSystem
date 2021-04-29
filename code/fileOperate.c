@@ -6,7 +6,7 @@
 #include <string.h>
 #include "model.h"
 
-int listInitiate()
+int listInitiate()   //链表初始化
 {
     char str0[]="-1";
     char str1[]="该数据";
@@ -21,13 +21,15 @@ int listInitiate()
     (ugHead)->next=NULL;
     if((pgHead=(pgnode *)malloc(sizeof(pgnode)))==NULL)
     {
-        free(pgHead);
+        free(pgHead);  //只有两个链表同时初始化成功程序才能正常运行
         pgHead=NULL;
         printf("不能成功分配研究生链表存储块！\n");
         return -1;
     }
     (pgHead)->next=NULL;
 
+    //两链表的头结点用于保存最新学号
+    //便于每次添加学生时都从最新学号开始
     ugHead->data.num=1;
     strcpy(ugHead->data.name,str1);
     ugHead->data.sex=(gand)0;
@@ -56,7 +58,7 @@ int listInitiate()
     return 1;
 }
 
-int readFromUgtxt()
+int readFromUgtxt()  //从txt文件读取本科生数据
 {
     FILE *ugFile;
     ugnode *ug,*uPtr=NULL;
@@ -68,6 +70,7 @@ int readFromUgtxt()
         printf("无法打开本科生数据文件ug.txt或文件不存在！\n");
     	return -1;
     }
+
     do
     {
         if((fscanf(ugFile,"%d%s",&uTmp.num,uTmp.name))==EOF) break;
@@ -75,28 +78,29 @@ int readFromUgtxt()
         uTmp.sex=(gand)sex;
         fscanf(ugFile,"%s%s",uTmp.speciaty,uTmp.classes);
         fscanf(ugFile,"%d%d%d%d%d%d",&uTmp.math,&uTmp.english,&uTmp.cLanguguage,&uTmp.totalScore,&uTmp.classRank,&uTmp.schoolRank);
-        if(count==-1)
+        if(count==-1)  //读取最新学号
         {
             ugHead->data.num=uTmp.num;
             count++;
             continue;
         }
         ug=(ugnode *)malloc(sizeof(ugnode));
-        memcpy(&ug->data,&uTmp,sizeof(ugdata));
+        memcpy(&ug->data,&uTmp,sizeof(ugdata)); //将临时变量uTmp的数据复制到链表新节点的数据中
         ug->next=NULL;
         if(count==0) ugHead->next=ug;
         else uPtr->next=ug;
         uPtr=ug;
         count++;
     } while (1);
+
     if(count==-1) printf("ug.txt打开成功，文件为空！\n");
     else printf("成功读取%d名本科生数据！\n",count);
-    ugTail=uPtr;
+    ugTail=uPtr;   //为方便添加学生，设计尾指针指向链表最后一个节点
     fclose(ugFile);
     return count;
 }
 
-int readFromUgdat()
+int readFromUgdat()  //从dat读取本科生数据
 {
     FILE *ugFile;
     ugnode *ug,*uPtr=NULL;
@@ -108,6 +112,7 @@ int readFromUgdat()
         printf("无法打开本科生数据文件ug.dat或文件不存在！\n");
     	return -1;
     }
+
     do
     {
         if(!(fread(&uTmp,sizeof(ugdata),1,ugFile))) break;
@@ -125,6 +130,7 @@ int readFromUgdat()
         uPtr=ug;
         count++;
     } while (1);
+
     if(count==-1) printf("ug.dat打开成功，文件为空！\n");
     else printf("成功读取%d名本科生数据！\n",count);
     ugTail=uPtr;
@@ -132,7 +138,7 @@ int readFromUgdat()
     return count;
 }
 
-int readFromPgtxt()
+int readFromPgtxt()  //从txt文件读取研究生数据
 {
     FILE *pgFile;
     pgnode *pg,*pPtr=NULL;
@@ -144,6 +150,7 @@ int readFromPgtxt()
         printf("无法打开研究生数据文件pg.txt或文件不存在！\n");
     	return -1;
     }
+
     do
     {
         if((fscanf(pgFile,"%d%s",&pTmp.num,pTmp.name))==EOF) break;
@@ -165,6 +172,7 @@ int readFromPgtxt()
         pPtr=pg;
         count++;
     } while (1);
+
     if(count==-1) printf("pg.txt打开成功，文件为空！\n");
     else printf("成功读取%d名研究生数据！\n",count);
     pgTail=pPtr;
@@ -172,7 +180,7 @@ int readFromPgtxt()
     return count;
 }
 
-int readFromPgdat()
+int readFromPgdat()  //从dat文件读取研究生数据
 {
     FILE *pgFile;
     pgnode *pg,*pPtr=NULL;
@@ -184,6 +192,7 @@ int readFromPgdat()
         printf("无法打开研究生数据文件pg.dat或文件不存在！\n");
     	return -1;
     }
+
     do
     {
         if(!(fread(&pTmp,sizeof(pgdata),1,pgFile))) break;
@@ -201,6 +210,7 @@ int readFromPgdat()
         pPtr=pg;
         count++;
     } while (1);
+
     if(count==-1) printf("pg.dat打开成功，文件为空！\n");
     else printf("成功读取%d名研究生数据！\n",count);
     pgTail=pPtr;
@@ -208,7 +218,7 @@ int readFromPgdat()
     return count;
 }
 
-int saveToUgtxt()
+int saveToUgtxt()  //将本科生数据保存到txt文件中
 {
     FILE *ugFile;
     ugnode *uPtr=ugHead;
@@ -219,7 +229,8 @@ int saveToUgtxt()
         printf("无法保存本科生数据到ug.txt！\n");
     	return -1;
     }
-    while (uPtr!=NULL)
+
+    while (uPtr!=NULL)  //从头结点开始保存
     {
         fprintf(ugFile,"%d %s ",uPtr->data.num,uPtr->data.name);
         sex=(int)uPtr->data.sex;
@@ -229,13 +240,14 @@ int saveToUgtxt()
         uPtr=uPtr->next;
         count++;
     }
+
     fclose(ugFile);
     if(count==0) printf("无本科生数据需要保存！\n");
     else printf("成功保存%d名本科生数据到ug.txt！\n",count);
     return count;
 }
 
-int saveToUgdat()
+int saveToUgdat()  //将本科生数据保存到dat文件
 {
     FILE *ugFile;
     ugnode *uPtr=ugHead;
@@ -246,19 +258,21 @@ int saveToUgdat()
         printf("无法保存本科生数据到ug.dat！\n");
     	return -1;
     }
+
     while (uPtr!=NULL)
     {
         fwrite(&uPtr->data,sizeof(ugdata),1,ugFile);
         uPtr=uPtr->next;
         count++;
     }
+
     fclose(ugFile);
     if(count==0) printf("无本科生数据需要保存！\n");
     else printf("成功保存%d名本科生数据到ug.dat！\n",count);
     return count;
 }
 
-int saveToPgtxt()
+int saveToPgtxt()  //将研究生数据保存到txt文件
 {
     FILE *pgFile;
     pgnode *pPtr=pgHead;
@@ -269,6 +283,7 @@ int saveToPgtxt()
         printf("无法保存研究生数据到pg.txt！\n");
     	return -1;
     }
+
     while (pPtr!=NULL)
     {
         fprintf(pgFile,"%d %s ",pPtr->data.num,pPtr->data.name);
@@ -279,13 +294,14 @@ int saveToPgtxt()
         pPtr=pPtr->next;
         count++;
     }
+
     fclose(pgFile);
     if(count==0) printf("无研究生数据需要保存！\n");
     else printf("成功保存%d名研究生数据到pg.txt！\n",count);
     return count;
 }
 
-int saveToPgdat()
+int saveToPgdat()  //将研究生数据保存到dat文件
 {
     FILE *pgFile;
     pgnode *pPtr=pgHead;
@@ -296,24 +312,27 @@ int saveToPgdat()
         printf("无法保存研究生数据到pg.dat！\n");
     	return -1;
     }
+
     while (pPtr!=NULL)
     {
         fwrite(&pPtr->data,sizeof(pgdata),1,pgFile);
         pPtr=pPtr->next;
         count++;
     }
+
     fclose(pgFile);
     if(count==0) printf("无研究生数据需要保存！\n");
     else printf("成功保存%d名研究生数据到pg.dat！\n",count);
     return count;
 }
 
-void listDestroy()
+void listDestroy()  //销毁两条链表
 {
     ugnode *uTmp,*uPtr;
     pgnode *pTmp,*pPtr;
     uPtr=ugHead;
     pPtr=pgHead;
+    
     while (uPtr!=NULL)
     {
         uTmp=uPtr;

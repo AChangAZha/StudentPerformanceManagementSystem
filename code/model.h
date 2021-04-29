@@ -42,9 +42,9 @@ typedef struct PGnode    /* 研究生链表 */
     struct PGnode *next; /* 指向下一个节点的指针 */
 }pgnode;
 
-extern ugnode *ugHead;
-extern pgnode *pgHead;
-extern ugnode *ugTail;
-extern pgnode *pgTail;
+extern ugnode *ugHead;   /* 本科生头结点指针 */
+extern pgnode *pgHead;   /* 研究生头结点指针 */
+extern ugnode *ugTail;   /* 本科生尾指针 */
+extern pgnode *pgTail;   /* 研究生尾指针 */
 
 #endif

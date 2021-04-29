@@ -9,12 +9,11 @@
 int main()
 {
     listInitiate();
-    readFromUgtxt();
-    readFromPgtxt();
+    readFromUgdat();
+    readFromPgdat();
     /***************************/
 
-
-    addUgNode();
+    inforSearch();
     /* 请在这里调用需要测试的函数*/
 
 
