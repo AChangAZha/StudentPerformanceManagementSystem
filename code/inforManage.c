@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include "model.h"
 #include "inquire.h"
+#include "tool.h"
 
 void addUgNode()  //添加本科生
 {
@@ -28,11 +29,7 @@ void addUgNode()  //添加本科生
         printf("性别(请选择) 1.男 2.女：");
         do
         {
-            while (scanf("%d", &sex)!= 1) //保证输入的是数字
-            {
-                printf("错误！请输入正确的数字：");
-                while (getchar()!='\n');
-            }
+			enterNUM(&sex);
             if (sex!=1 && sex!=2) printf("错误！请输入正确的数字：");
         } while (sex!=1 && sex!=2);
         ug->data.sex=(sex==1)?male:female;
@@ -79,11 +76,7 @@ void addPgNode()  //添加研究生
         printf("性别(请选择) 1.男 2.女：");
         do
         {
-            while (scanf("%d",&sex)!=1)
-            {
-                printf("错误！请输入正确的数字：");
-                while (getchar()!='\n');
-            }
+			enterNUM(&sex);
             if (sex!=1 && sex!=2) printf("错误！请输入正确的数字：");
         } while (sex!=1 && sex!=2);
         pg->data.sex=(sex==1)?male:female;
@@ -120,41 +113,33 @@ void inforSearch()  //查询学生基本信息
     {
 		//每个学号对应一个学生，不区分本科生和研究生
         printf("请输入学号：");
-        while (scanf("%d",&num)!=1) //保证输入的数字
-        {
-            printf("错误！请输入数字：");
-            while (getchar()!='\n');
-        }
+		enterNUM(&num);
 		//需要在两个链表中搜寻
 		//调用查找函数(在inquire.c中定义)
         if((uPtr=serchUg(num))!=NULL)
         {
             printf("查询成功，以下是该学生的基本资料：\n");
-            printf("%-14s%-14s%-14s%-14s%-14s%-14s\n","培养层次","学号","姓名","性别","专业","班级");
-            printf("%-14s%-14d%-14s","本科",uPtr->data.num,uPtr->data.name);
-            if(uPtr->data.sex==male) printf("%-14s","男");
-            else printf("%-14s","女");
-            printf("%-14s%-14s\n",uPtr->data.speciaty,uPtr->data.classes);
+            printf("%-10s%-8s%-12s%-6s%-20s%-20s\n","培养层次","学号","姓名","性别","专业","班级");
+            printf("%-10s%-8d%-12s","本科",uPtr->data.num,uPtr->data.name);
+            if(uPtr->data.sex==male) printf("%-6s","男");
+            else printf("%-6s","女");
+            printf("%-20s%-20s\n",uPtr->data.speciaty,uPtr->data.classes);
         }
         else if((pPtr=serchPg(num))!=NULL)
         {
             printf("查询成功，以下是该学生的基本资料：\n");
-            printf("%-14s%-14s%-14s%-14s%-14s%-14s%-14s%-14s\n","培养层次","学号","姓名","性别","专业","班级","研究方向","导师");
-            printf("%-14s%-14d%-14s","研究生",pPtr->data.num,pPtr->data.name);
-            if(pPtr->data.sex==male) printf("%-14s","男");
-            else printf("%-14s","女");
-            printf("%-14s%-14s%-14s%-14s\n",pPtr->data.speciaty,pPtr->data.classes,pPtr->data.rschFields,pPtr->data.advisor);
+            printf("%-10s%-8s%-12s%-6s%-20s%-20s%-20s%-12s\n","培养层次","学号","姓名","性别","专业","班级","研究方向","导师");
+            printf("%-10s%-8d%-12s","研究生",pPtr->data.num,pPtr->data.name);
+            if(pPtr->data.sex==male) printf("%-6s","男");
+            else printf("%-6s","女");
+            printf("%-20s%-20s%-20s%-12s\n",pPtr->data.speciaty,pPtr->data.classes,pPtr->data.rschFields,pPtr->data.advisor);
         }
         else printf("没有查询到相关信息！\n");
         printf("请选择 1.继续查询 2.返回：");
         do
         {
-            while (scanf("%d", &opt)!=1)
-            {
-                printf("错误！请输入正确的数字：");
-                while (getchar()!='\n');
-            }
-            if (opt!=1 && opt!= 2) printf("错误！请输入正确的数字：");
+			enterNUM(&opt);
+			if (opt!=1 && opt!= 2) printf("错误！请输入正确的数字：");
         } while (opt!=1 && opt!=2);
         printf("\n");
         if(opt==2) return;

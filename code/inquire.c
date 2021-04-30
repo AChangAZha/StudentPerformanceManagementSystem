@@ -2,7 +2,7 @@
 #include "inquire.h"
 #include <stdio.h>
 
-ugnode *serchUg(int num)
+ugnode *serchUg(int num) //在本科生链表中搜索
 {
     ugnode *uPtr=ugHead->next;
     while (uPtr!=NULL)
@@ -10,10 +10,10 @@ ugnode *serchUg(int num)
         if(uPtr->data.num==num) return uPtr;
         uPtr=uPtr->next;
     }
-    return NULL;
+    return NULL;  //没找到则返回NULL
 }
 
-pgnode *serchPg(int num)
+pgnode *serchPg(int num)  //在研究生链表中搜索
 {
     pgnode *pPtr=pgHead->next;
     while (pPtr!=NULL)

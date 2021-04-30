@@ -4,6 +4,7 @@
 #include "fileOperate.h"
 #include "inforManage.h"
 #include "scoreManage.h"
+#include "tool.h"
 /* 这里包含你要测试的头文件 */
 
 int main()
@@ -13,8 +14,7 @@ int main()
     readFromPgdat();
     /***************************/
 
-    addPgNode();
-    addUgNode();
+    inforSearch();
     /* 请在这里调用需要测试的函数*/
 
 
