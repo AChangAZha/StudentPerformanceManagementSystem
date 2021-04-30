@@ -17,7 +17,7 @@ void addUgNode()  //添加本科生
         count++;
         printf("正在添加第%d名本科生\n",count);
         printf("姓名(最多可输入5个汉字,输入0可结束添加)：");
-        scanf("%s",tmp);
+        enterStr(tmp,sizeof(tmp));
         if(strcmp(tmp,"0")==0) break;  //输入0结束输入
 
         ug=(ugnode *)malloc(sizeof(ugnode)); //不为0才分配存储空间
@@ -34,9 +34,9 @@ void addUgNode()  //添加本科生
         } while (sex!=1 && sex!=2);
         ug->data.sex=(sex==1)?male:female;
         printf("专业(最多可输入9个汉字)：");
-        scanf("%s",ug->data.speciaty);
+        enterStr(ug->data.speciaty,sizeof(ug->data.speciaty));
         printf("班级(最多可输入9个汉字)：");
-        scanf("%s",ug->data.classes);
+        enterStr(ug->data.classes,sizeof(ug->data.classes));
 
         ug->data.math=-1; //成绩初始化为-1
         ug->data.english=-1;
@@ -65,7 +65,7 @@ void addPgNode()  //添加研究生
         count++;
         printf("正在添加第%d名研究生\n",count);
         printf("姓名(最多可输入5个汉字,输入0可结束添加)：");
-        scanf("%s",tmp);
+        enterStr(tmp,sizeof(tmp));
         if(strcmp(tmp,"0")==0) break;
 
         pg=(pgnode *)malloc(sizeof(pgnode));
@@ -81,13 +81,13 @@ void addPgNode()  //添加研究生
         } while (sex!=1 && sex!=2);
         pg->data.sex=(sex==1)?male:female;
         printf("专业(最多可输入9个汉字)：");
-        scanf("%s",pg->data.speciaty);
+        enterStr(pg->data.speciaty,sizeof(pg->data.speciaty));
         printf("班级(最多可输入9个汉字)：");
-        scanf("%s",pg->data.classes);
+        enterStr(pg->data.classes,sizeof(pg->data.classes));
         printf("研究方向(最多可输入9个汉字)：");
-        scanf("%s",pg->data.rschFields);
+        enterStr(pg->data.rschFields,sizeof(pg->data.rschFields));
         printf("导师(最多可输入5个汉字)：");
-        scanf("%s",pg->data.advisor);
+        enterStr(pg->data.advisor,sizeof(pg->data.advisor));
 
         pg->data.compCourse=-1;
         pg->data.thesis=-1;
