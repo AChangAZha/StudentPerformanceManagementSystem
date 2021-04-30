@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "model.h"
 #include "inquire.h"
 #include <stdio.h>

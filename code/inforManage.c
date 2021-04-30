@@ -1,3 +1,4 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "inforManage.h"
 #include <stdio.h>
 #include <string.h>
