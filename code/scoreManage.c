@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include "model.h"
 #include "inquire.h"
+#include "tool.h"
 
 void scoreSearch()
 {
@@ -11,7 +12,7 @@ void scoreSearch()
     while (1)
     {
         printf("请输入学号：");
-        scanf("%d",&num);
+        enterNUM(&num);
         if((uPtr=serchUg(num))!=NULL)
         {
             printf("查询成功，以下是该学生的成绩：\n");
@@ -28,15 +29,12 @@ void scoreSearch()
         printf("请选择 1.继续查询 2.返回：");
         do
         {
-            while (scanf("%d", &opt) != 1)
-            {
-                printf("错误！请输入正确的数字：");
-                while (getchar() != '\n');
-            }
+            enterNUM(&opt);
             if (opt != 1 && opt != 2) printf("错误！请输入正确的数字：");
         } while (opt != 1 && opt != 2);
         printf("\n");
         if(opt==2) return;
+        num=0;
         opt=0;
     }
 }
