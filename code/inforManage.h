@@ -4,6 +4,6 @@
 void addUgNode();
 void addPgNode();
 void inforSearch();
-int alterData();
+void alterData();
 
 #endif
