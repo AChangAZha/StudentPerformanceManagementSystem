@@ -29,4 +29,5 @@ int main()
     saveToPgdat(NULL);
     listDestroy(NULL);
     system("pause");
+    system("cls");
 }

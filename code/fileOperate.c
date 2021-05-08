@@ -280,7 +280,7 @@ int saveToPgtxt(FILE *pgFile)  //将研究生数据保存到txt文件
     int sex,count=-1;
     if(pgFile==NULL)
     {
-        if((pgFile=fopen("ug.txt","w"))==NULL)
+        if((pgFile=fopen("pg.txt","w"))==NULL)
         {
             printf("无法保存研究生数据到pg.txt！\n");
     	    return -1;
@@ -355,14 +355,31 @@ void listDestroy()  //销毁两条链表
 
 void saveToFile() //另存为
 {
-    int fileType,pathLen,nameLen,i,j,n=0;
+    int stuType,fileType,pathLen,nameLen,i,j,n=0;
     FILE *fp;
-    char filePath[80];
+    char filePath[200];
     char fileName[25];
     char txt[]=".txt";
     char dat[]=".dat";
-    printf("请输入保存路径：");
-    enterStr(filePath,50);
+    printf("----------------------------------------------\n");
+    printf("                   请选择                    \n");
+    printf("     1---本科生                2---研究生     \n");
+    printf("                  0---退出                    \n");
+    printf("----------------------------------------------\n\n");
+    do
+    {
+        enterNUM(&stuType);
+        if (stuType!=1 && stuType!=2 && stuType!=0) printf("错误！请输入正确的数字：");
+    } while (stuType!=1 && stuType!=2 && stuType!=0);
+    if(stuType==0)
+    {
+        printf("谢谢使用！\n");
+        system("pause");
+        system("cls");
+        return;
+    }
+    printf("请输入保存路径（请输入正确的路径，否则会保存失败或保存到默认目录）：");
+    enterStr(filePath,150);
     printf("请输入文件名：");
     enterStr(fileName,25);
     printf("请选择保存类型 1.txt 2.dat：");
@@ -401,9 +418,12 @@ void saveToFile() //另存为
         if((fp=fopen(filePath,"w"))==NULL)
         {
             printf("保存失败，请检查保存路径是否正确！");
+            system("pause");
+            system("cls");
             return;
         }
-        saveToUgtxt(fp);
+        if(stuType==1) saveToUgtxt(fp);
+        else saveToPgtxt(fp);
     }
     else
     {
@@ -412,7 +432,13 @@ void saveToFile() //另存为
         if((fp=fopen(filePath,"wb"))==NULL)
         {
             printf("保存失败，请检查保存路径是否正确！");
+            system("pause");
+            system("cls");
             return;
         }
+        if(stuType==1) saveToUgdat(fp);
+        else saveToPgdat(fp);
     }
+    system("pause");
+    system("cls");
 }

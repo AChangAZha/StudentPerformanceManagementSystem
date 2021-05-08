@@ -50,8 +50,11 @@ void addUgNode()  //添加本科生
         ugTail=ug; //尾指针后移
         printf("\n");
         sex=0;
+        system("cls");
     }
     printf("成功添加%d个本科生！\n",count-1);
+    system("pause");
+    system("cls");
     return;
 }
 
@@ -100,8 +103,11 @@ void addPgNode()  //添加研究生
         pgTail=pg;
         printf("\n");
         sex=0;
+        system("cls");
     }
     printf("成功添加%d个研究生！\n",count-1);
+    system("pause");
+    system("cls");
     return;
 }
 
@@ -143,9 +149,16 @@ void inforSearch()  //查询学生基本信息
             if (opt!=1 && opt!= 2) printf("错误！请输入正确的数字：");
         } while (opt!=1 && opt!=2);
         printf("\n");
-        if(opt==2) return;
+        if(opt==2)
+        {
+            printf("谢谢使用！\n");
+            system("pause");
+            system("cls");
+            return;
+        }
         num=0;
         opt=0;
+        system("cls");
     }
 }
 
