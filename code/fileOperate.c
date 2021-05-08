@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "model.h"
+#include "tool.h"
 
 int listInitiate()   //链表初始化
 {
@@ -217,16 +218,17 @@ int readFromPgdat()  //从dat文件读取研究生数据
     return count;
 }
 
-int saveToUgtxt()  //将本科生数据保存到txt文件中
+int saveToUgtxt(FILE *ugFile)  //将本科生数据保存到txt文件中
 {
-    FILE *ugFile;
     ugnode *uPtr=ugHead;
     int sex,count=-1;
-
-    if((ugFile=fopen("ug.txt","w"))==NULL)
+    if(ugFile==NULL)
     {
-        printf("无法保存本科生数据到ug.txt！\n");
-    	return -1;
+        if((ugFile=fopen("ug.txt","w"))==NULL)
+        {
+            printf("无法保存本科生数据到ug.txt！\n");
+    	    return -1;
+        }
     }
 
     while (uPtr!=NULL)  //从头结点开始保存
@@ -242,20 +244,21 @@ int saveToUgtxt()  //将本科生数据保存到txt文件中
 
     fclose(ugFile);
     if(count==0) printf("无本科生数据需要保存！\n");
-    else printf("成功保存%d名本科生数据到ug.txt！\n",count);
+    else printf("成功保存%d名本科生数据(文件类型：txt)！\n",count);
     return count;
 }
 
-int saveToUgdat()  //将本科生数据保存到dat文件
+int saveToUgdat(FILE *ugFile)  //将本科生数据保存到dat文件
 {
-    FILE *ugFile;
     ugnode *uPtr=ugHead;
     int count=-1;
-
-    if((ugFile=fopen("ug.dat","wb"))==NULL)
+    if(ugFile==NULL)
     {
-        printf("无法保存本科生数据到ug.dat！\n");
-    	return -1;
+        if((ugFile=fopen("ug.dat","wb"))==NULL)
+        {
+            printf("无法保存本科生数据到ug.dat！\n");
+    	    return -1;
+        }
     }
 
     while (uPtr!=NULL)
@@ -267,20 +270,21 @@ int saveToUgdat()  //将本科生数据保存到dat文件
 
     fclose(ugFile);
     if(count==0) printf("无本科生数据需要保存！\n");
-    else printf("成功保存%d名本科生数据到ug.dat！\n",count);
+    else printf("成功保存%d名本科生数据(文件类型：dat)！\n",count);
     return count;
 }
 
-int saveToPgtxt()  //将研究生数据保存到txt文件
+int saveToPgtxt(FILE *pgFile)  //将研究生数据保存到txt文件
 {
-    FILE *pgFile;
     pgnode *pPtr=pgHead;
     int sex,count=-1;
-
-    if((pgFile=fopen("pg.txt","w"))==NULL)
+    if(pgFile==NULL)
     {
-        printf("无法保存研究生数据到pg.txt！\n");
-    	return -1;
+        if((pgFile=fopen("ug.txt","w"))==NULL)
+        {
+            printf("无法保存研究生数据到pg.txt！\n");
+    	    return -1;
+        }
     }
 
     while (pPtr!=NULL)
@@ -296,20 +300,21 @@ int saveToPgtxt()  //将研究生数据保存到txt文件
 
     fclose(pgFile);
     if(count==0) printf("无研究生数据需要保存！\n");
-    else printf("成功保存%d名研究生数据到pg.txt！\n",count);
+    else printf("成功保存%d名研究生数据(文件类型：txt)！\n",count);
     return count;
 }
 
-int saveToPgdat()  //将研究生数据保存到dat文件
+int saveToPgdat(FILE *pgFile)  //将研究生数据保存到dat文件
 {
-    FILE *pgFile;
     pgnode *pPtr=pgHead;
     int count=-1;
-
-    if((pgFile=fopen("pg.dat","wb"))==NULL)
+    if(pgFile==NULL)
     {
-        printf("无法保存研究生数据到pg.dat！\n");
-    	return -1;
+        if((pgFile=fopen("pg.dat","wb"))==NULL)
+        {
+            printf("无法保存研究生数据到pg.dat！\n");
+    	    return -1;
+        }
     }
 
     while (pPtr!=NULL)
@@ -321,7 +326,7 @@ int saveToPgdat()  //将研究生数据保存到dat文件
 
     fclose(pgFile);
     if(count==0) printf("无研究生数据需要保存！\n");
-    else printf("成功保存%d名研究生数据到pg.dat！\n",count);
+    else printf("成功保存%d名研究生数据(文件类型：dat)！\n",count);
     return count;
 }
 
@@ -346,4 +351,68 @@ void listDestroy()  //销毁两条链表
     }
     ugHead=NULL;
     pgHead=NULL;
+}
+
+void saveToFile() //另存为
+{
+    int fileType,pathLen,nameLen,i,j,n=0;
+    FILE *fp;
+    char filePath[80];
+    char fileName[25];
+    char txt[]=".txt";
+    char dat[]=".dat";
+    printf("请输入保存路径：");
+    enterStr(filePath,50);
+    printf("请输入文件名：");
+    enterStr(fileName,25);
+    printf("请选择保存类型 1.txt 2.dat：");
+    do
+    {
+        enterNUM(&fileType);
+        if (fileType!=1 && fileType!=2) printf("错误！请输入正确的数字：");
+    } while (fileType!=1 && fileType!=2);
+    for(i=0;filePath[i]!='\0';i++)
+    {
+        if(filePath[i]=='\\')
+        {
+            pathLen=strlen(filePath);
+            for(j=pathLen+1;j>i+1;j--)
+                filePath[j]=filePath[j-1];
+            i++;
+            n++;
+            filePath[i]='\\';
+        }
+    }
+    pathLen=strlen(filePath);
+    if(n>1)
+    {
+        for(i=0;i<2;i++)
+            filePath[pathLen+i]='\\';
+        filePath[pathLen+2]='\0';
+    }
+    pathLen=strlen(filePath);
+    nameLen=strlen(fileName);
+    for(i=0;i<nameLen;i++)
+        filePath[pathLen+i]=fileName[i];
+    if(fileType==1)
+    {
+        for(i=0;i<5;i++)
+            filePath[pathLen+nameLen+i]=txt[i];
+        if((fp=fopen(filePath,"w"))==NULL)
+        {
+            printf("保存失败，请检查保存路径是否正确！");
+            return;
+        }
+        saveToUgtxt(fp);
+    }
+    else
+    {
+        for(i=0;i<5;i++)
+            filePath[pathLen+nameLen+i]=dat[i];
+        if((fp=fopen(filePath,"wb"))==NULL)
+        {
+            printf("保存失败，请检查保存路径是否正确！");
+            return;
+        }
+    }
 }

@@ -5,15 +5,18 @@
 #include "inquire.h"
 #include "tool.h"
 
-void scoreSearch()
+void scoreSearch() //查询学生成绩
 {
     int num,opt=0;
     ugnode *uPtr;
     pgnode *pPtr;
     while (1)
     {
+        //每个学号对应一个学生，不区分本科生和研究生
         printf("请输入学号：");
         enterNUM(&num);
+        //需要在两个链表中搜寻
+		//调用查找函数(在inquire.c中定义)
         if((uPtr=serchUg(num))!=NULL)
         {
             printf("查询成功，以下是该学生的成绩：\n");
@@ -40,17 +43,18 @@ void scoreSearch()
     }
 }
 
-void calculate()
+void calculate() //计算总成绩、排名
 {
     ugnode *uPtr=ugHead->next;
     pgnode *pPtr=pgHead->next;
-    while (uPtr!=NULL)
+    while (uPtr!=NULL) //计算本科生总成绩
     {
+        //只有所有成绩均为有效成绩才可以计算
         if(uPtr->data.math!=-1 && uPtr->data.english!=-1 && uPtr->data.cLanguguage!=-1)
         uPtr->data.totalScore=uPtr->data.math+uPtr->data.english+uPtr->data.cLanguguage;
         uPtr=uPtr->next;
     }
-    while (pPtr!=NULL)
+    while (pPtr!=NULL) //计算研究生总成绩
     {
         if(pPtr->data.compCourse!=-1 && pPtr->data.thesis!=-1)
         pPtr->data.totalScore=pPtr->data.compCourse+pPtr->data.thesis;

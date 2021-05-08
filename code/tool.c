@@ -11,7 +11,7 @@ void enterNUM(int *num) //从键盘输入数字
     }
 }
 
-void enterStr(char *str,int num)
+void enterStr(char *str,int num) //输入字符串
 {
     char tmp[50];
     while(1)

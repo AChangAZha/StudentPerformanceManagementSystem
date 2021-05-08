@@ -15,17 +15,18 @@ int main()
     /***************************/
 
 
-    alterData();
+
+    saveToFile();
     /* 请在这里调用需要测试的函数*/
 
 
 
 
     /**************************/
-    saveToUgtxt();
-    saveToUgdat();
-    saveToPgtxt();
-    saveToPgdat();
-    listDestroy();
+    saveToUgtxt(NULL);
+    saveToUgdat(NULL);
+    saveToPgtxt(NULL);
+    saveToPgdat(NULL);
+    listDestroy(NULL);
     system("pause");
 }
