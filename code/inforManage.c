@@ -16,6 +16,7 @@ void addUgNode()  //添加本科生
     while (1)
     {
         count++;
+        if(count>1) printf("添加成功！");
         printf("正在添加第%d名本科生\n",count);
         printf("姓名(最多可输入5个汉字,输入0可结束添加)：");
         enterStr(tmp,sizeof(tmp));
@@ -48,10 +49,10 @@ void addUgNode()  //添加本科生
         if(ugTail!=NULL) ugTail->next=ug;
         else ugHead->next=ug;
         ugTail=ug; //尾指针后移
-        printf("\n");
         sex=0;
         system("cls");
     }
+    system("cls");
     printf("成功添加%d个本科生！\n",count-1);
     system("pause");
     system("cls");
@@ -67,6 +68,7 @@ void addPgNode()  //添加研究生
     while (1)
     {
         count++;
+        if(count>1) printf("添加成功！");
         printf("正在添加第%d名研究生\n",count);
         printf("姓名(最多可输入5个汉字,输入0可结束添加)：");
         enterStr(tmp,sizeof(tmp));
@@ -101,10 +103,10 @@ void addPgNode()  //添加研究生
         if(pgTail!=NULL) pgTail->next=pg;
         else pgHead->next=pg;
         pgTail=pg;
-        printf("\n");
         sex=0;
         system("cls");
     }
+    system("cls");
     printf("成功添加%d个研究生！\n",count-1);
     system("pause");
     system("cls");
@@ -148,9 +150,9 @@ void inforSearch()  //查询学生基本信息
             enterNUM(&opt);
             if (opt!=1 && opt!= 2) printf("错误！请输入正确的数字：");
         } while (opt!=1 && opt!=2);
-        printf("\n");
         if(opt==2)
         {
+            system("cls");
             printf("谢谢使用！\n");
             system("pause");
             system("cls");
@@ -176,26 +178,31 @@ void alterData()  //修改学生基本信息
     else
     {
         printf("没有找到该学生！\n");
+        system("pause");
+        system("cls");
         return;
     }
-
+    system("cls");
     if(uflag==1)   //若uflag为一，则表示所输入学号是本科生的，否则为研究生的学号
     {
-        printf("----------------------------------------------\n");
-        printf("  1---修改姓名                  2---修改性别  \n");
-        printf("  3---修改专业                  4---修改班级  \n");
-        printf("                  5---退出                    \n");
-        printf("----------------------------------------------\n");
-        
-        printf("\n请输入菜单编号：");
         while(1)
         {
-            enterNUM(&item);
-            if(item>5 || item<1)
+            printf("%-10s%-8s%-12s%-6s%-20s%-20s\n","培养层次","学号","姓名","性别","专业","班级");
+            printf("%-10s%-8d%-12s","本科",uPtr->data.num,uPtr->data.name);
+            if(uPtr->data.sex==male) printf("%-6s","男");
+            else printf("%-6s","女");
+            printf("%-20s%-20s\n",uPtr->data.speciaty,uPtr->data.classes);
+            printf("----------------------------------------------\n");
+            printf("  1---修改姓名                  2---修改性别  \n");
+            printf("  3---修改专业                  4---修改班级  \n");
+            printf("                  5---退出                    \n");
+            printf("----------------------------------------------\n");
+            printf("\n请输入菜单编号：");
+            do
             {
-                printf("菜单编号输入错误，请重新输入：");
-                continue;
-            }
+                enterNUM(&item);
+                if (item>5 || item<1) printf("菜单编号输入错误，请重新输入：");
+            } while (item>5 || item<1);
             switch(item){
                 case 1:
                 {
@@ -229,10 +236,16 @@ void alterData()  //修改学生基本信息
                 case 5:
                 {
                     printf("谢谢使用！\n");
-                    return;
+                    break;
                 }
             }
-            printf("请选择下一操作（1.继续修改 2.退出）：");
+            if(item==5)
+            {
+                system("pause");
+                system("cls");
+                break;
+            }
+            printf("修改成功！请选择下一操作（1.继续修改 2.退出）：");
             do
             {
                 enterNUM(&opt);
@@ -241,36 +254,35 @@ void alterData()  //修改学生基本信息
             if(opt==2)
             {
                 printf("谢谢使用！\n");
-                return;
+                system("pause");
+                system("cls");
+                break;
             }
-            else printf("\n请输入菜单编号：");
+            system("cls");
         }
-        printf("修改后的学生信息：\n");
-        printf("%-10s%-8s%-12s%-6s%-20s%-20s\n","培养层次","学号","姓名","性别","专业","班级");
-        printf("%-10s%-8d%-12s","本科",uPtr->data.num,uPtr->data.name);
-        if(uPtr->data.sex==male) printf("%-6s","男");
-        else printf("%-6s","女");
-        printf("%-20s%-20s\n",uPtr->data.speciaty,uPtr->data.classes);
-
     }
     else   //用户输入学号为研究生学号
     {
-        printf("----------------------------------------------\n");
-        printf("  1---修改姓名                  2---修改性别  \n");
-        printf("  3---修改专业                  4---修改班级  \n");
-        printf(" 5---修改研究方向               6---修改导师  \n");
-        printf("                  7---退出                    \n");
-        printf("----------------------------------------------\n");
-        
-        printf("\n请输入菜单编号：");
         while(1)
         {
+            printf("%-10s%-8s%-12s%-6s%-20s%-20s%-20s%-12s\n","培养层次","学号","姓名","性别","专业","班级","研究方向","导师");
+            printf("%-10s%-8d%-12s","研究生",pPtr->data.num,pPtr->data.name);
+            if(pPtr->data.sex==male) printf("%-6s","男");
+            else printf("%-6s","女");
+            printf("%-20s%-20s%-20s%-12s\n",pPtr->data.speciaty,pPtr->data.classes,pPtr->data.rschFields,pPtr->data.advisor);
+            printf("----------------------------------------------\n");
+            printf("  1---修改姓名                  2---修改性别  \n");
+            printf("  3---修改专业                  4---修改班级  \n");
+            printf(" 5---修改研究方向               6---修改导师  \n");
+            printf("                  7---退出                    \n");
+            printf("----------------------------------------------\n");
+            printf("\n请输入菜单编号：");
             enterNUM(&item);
-            if(item>7 || item<1)
+            do
             {
-                printf("菜单编号输入错误，请重新输入：");
-                continue;
-            }
+                enterNUM(&item);
+                if (item>5 || item<1) printf("菜单编号输入错误，请重新输入：");
+            } while (item>5 || item<1);
             switch(item){
                 case 1:
                 {
@@ -316,10 +328,16 @@ void alterData()  //修改学生基本信息
                 case 7:
                 {
                     printf("谢谢使用！\n");
-                    return;
+                    break;
                 }
             }
-            printf("请选择下一操作（1.继续修改 2.退出）：");
+            if(item==7)
+            {
+                system("pause");
+                system("cls");
+                break;
+            }
+            printf("修改成功！请选择下一操作（1.继续修改 2.退出）：");
             do
             {
                 enterNUM(&opt);
@@ -328,15 +346,11 @@ void alterData()  //修改学生基本信息
             if(opt==2)
             {
                 printf("谢谢使用！\n");
-                return;
+                system("pause");
+                system("cls");
+                break;
             }
-            else printf("\n请输入菜单编号：");
+            system("cls");
         }
-        printf("修改后的学生信息：\n");
-        printf("%-10s%-8s%-12s%-6s%-20s%-20s%-20s%-12s\n","培养层次","学号","姓名","性别","专业","班级","研究方向","导师");
-        printf("%-10s%-8d%-12s","研究生",pPtr->data.num,pPtr->data.name);
-        if(pPtr->data.sex==male) printf("%-6s","男");
-        else printf("%-6s","女");
-        printf("%-20s%-20s%-20s%-12s\n",pPtr->data.speciaty,pPtr->data.classes,pPtr->data.rschFields,pPtr->data.advisor);
     }
 }

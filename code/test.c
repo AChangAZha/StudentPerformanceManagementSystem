@@ -12,6 +12,8 @@ int main()
     listInitiate();
     readFromUgtxt();
     readFromPgtxt();
+    system("pause");
+    system("cls");
     /***************************/
 
 

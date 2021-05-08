@@ -362,15 +362,16 @@ void saveToFile() //另存为
     char txt[]=".txt";
     char dat[]=".dat";
     printf("----------------------------------------------\n");
-    printf("                   请选择                    \n");
     printf("     1---本科生                2---研究生     \n");
     printf("                  0---退出                    \n");
     printf("----------------------------------------------\n\n");
+    printf("请选择菜单编号：");
     do
     {
         enterNUM(&stuType);
         if (stuType!=1 && stuType!=2 && stuType!=0) printf("错误！请输入正确的数字：");
     } while (stuType!=1 && stuType!=2 && stuType!=0);
+    system("cls");
     if(stuType==0)
     {
         printf("谢谢使用！\n");
