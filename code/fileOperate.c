@@ -1,6 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
-#include "fileOperate.h"
 #include <stdio.h>
+#include "fileOperate.h"
 #include <stdlib.h>
 #include <string.h>
 #include "model.h"
@@ -374,7 +374,7 @@ void saveToFile() //另存为
     system("cls");
     if(stuType==0)
     {
-        printf("谢谢使用！\n");
+        printf("谢谢使用！");
         system("pause");
         system("cls");
         return;

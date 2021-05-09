@@ -15,6 +15,7 @@ void addUgNode()  //添加本科生
 
     while (1)
     {
+        system("cls");
         count++;
         if(count>1) printf("添加成功！");
         printf("正在添加第%d名本科生\n",count);
@@ -50,10 +51,9 @@ void addUgNode()  //添加本科生
         else ugHead->next=ug;
         ugTail=ug; //尾指针后移
         sex=0;
-        system("cls");
     }
     system("cls");
-    printf("成功添加%d个本科生！\n",count-1);
+    printf("\n成功添加%d个本科生！",count-1);
     system("pause");
     system("cls");
     return;
@@ -67,6 +67,7 @@ void addPgNode()  //添加研究生
 
     while (1)
     {
+        system("cls");
         count++;
         if(count>1) printf("添加成功！");
         printf("正在添加第%d名研究生\n",count);
@@ -104,10 +105,9 @@ void addPgNode()  //添加研究生
         else pgHead->next=pg;
         pgTail=pg;
         sex=0;
-        system("cls");
     }
     system("cls");
-    printf("成功添加%d个研究生！\n",count-1);
+    printf("\n成功添加%d个研究生！",count-1);
     system("pause");
     system("cls");
     return;
@@ -120,6 +120,7 @@ void inforSearch()  //查询学生基本信息
     pgnode *pPtr;
     while(1)
     {
+        system("cls");
         //每个学号对应一个学生，不区分本科生和研究生
         printf("请输入学号：");
         enterNUM(&num);
@@ -128,20 +129,12 @@ void inforSearch()  //查询学生基本信息
         if((uPtr=serchUg(num))!=NULL)
         {
             printf("查询成功，以下是该学生的基本资料：\n");
-            printf("%-10s%-8s%-12s%-6s%-20s%-20s\n","培养层次","学号","姓名","性别","专业","班级");
-            printf("%-10s%-8d%-12s","本科",uPtr->data.num,uPtr->data.name);
-            if(uPtr->data.sex==male) printf("%-6s","男");
-            else printf("%-6s","女");
-            printf("%-20s%-20s\n",uPtr->data.speciaty,uPtr->data.classes);
+            outputUgInfor(uPtr);
         }
         else if((pPtr=serchPg(num))!=NULL)
         {
             printf("查询成功，以下是该学生的基本资料：\n");
-            printf("%-10s%-8s%-12s%-6s%-20s%-20s%-20s%-12s\n","培养层次","学号","姓名","性别","专业","班级","研究方向","导师");
-            printf("%-10s%-8d%-12s","研究生",pPtr->data.num,pPtr->data.name);
-            if(pPtr->data.sex==male) printf("%-6s","男");
-            else printf("%-6s","女");
-            printf("%-20s%-20s%-20s%-12s\n",pPtr->data.speciaty,pPtr->data.classes,pPtr->data.rschFields,pPtr->data.advisor);
+            outputPgInfor(pPtr);
         }
         else printf("没有查询到相关信息！\n");
         printf("请选择 1.继续查询 2.返回：");
@@ -153,14 +146,13 @@ void inforSearch()  //查询学生基本信息
         if(opt==2)
         {
             system("cls");
-            printf("谢谢使用！\n");
+            printf("谢谢使用！");
             system("pause");
             system("cls");
             return;
         }
         num=0;
         opt=0;
-        system("cls");
     }
 }
 
@@ -270,6 +262,7 @@ void alterData()  //修改学生基本信息
             if(pPtr->data.sex==male) printf("%-6s","男");
             else printf("%-6s","女");
             printf("%-20s%-20s%-20s%-12s\n",pPtr->data.speciaty,pPtr->data.classes,pPtr->data.rschFields,pPtr->data.advisor);
+
             printf("----------------------------------------------\n");
             printf("  1---修改姓名                  2---修改性别  \n");
             printf("  3---修改专业                  4---修改班级  \n");
@@ -277,7 +270,6 @@ void alterData()  //修改学生基本信息
             printf("                  7---退出                    \n");
             printf("----------------------------------------------\n");
             printf("\n请输入菜单编号：");
-            enterNUM(&item);
             do
             {
                 enterNUM(&item);

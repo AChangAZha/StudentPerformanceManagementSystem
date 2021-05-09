@@ -1,6 +1,5 @@
 #ifndef FILEOPERATE_H
 #define FILEOPERATE_H
-#include <stdio.h>
 
 int listInitiate();
 int readFromUgtxt();
