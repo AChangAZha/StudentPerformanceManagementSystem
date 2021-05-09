@@ -83,7 +83,7 @@ int main()
     /*************************************************************/
     while (1)
     {
-        outputMenu();
+        outputMainMenu();
         printf("\n请输入菜单编号：");
         do
         {
@@ -97,12 +97,18 @@ int main()
             case 2: printf("待开发\n");break;
             case 3: printf("待开发\n");break;
             case 4: printf("待开发\n");break;
-            case 5: printf("待开发\n");break;
+            case 5: 
+            {
+                while(1)
+                {
+                    if((saveToFile())==0) break;
+                }
+                break;
+            }
             case 6: printf("待开发\n");break;
             case 7: break;
         }
         if(item==7) break;
-        system("pause");
         system("cls");
     }
     /*************************************************************/

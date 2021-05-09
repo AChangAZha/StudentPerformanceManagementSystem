@@ -11,6 +11,6 @@ int saveToUgdat(FILE *ugFile);
 int saveToPgtxt(FILE *pgFile);
 int saveToPgdat(FILE *pgFile);
 void listDestroy();
-void saveToFile();
+int saveToFile();
 
 #endif

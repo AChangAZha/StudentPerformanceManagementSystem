@@ -353,31 +353,32 @@ void listDestroy()  //销毁两条链表
     pgHead=NULL;
 }
 
-void saveToFile() //另存为
+int saveToFile() //另存为
 {
-    int stuType,fileType,pathLen,nameLen,i,j,n=0;
+    int stuType,fileType,pathLen,nameLen,i,j;
     FILE *fp;
     char filePath[200];
     char fileName[25];
     char txt[]=".txt";
     char dat[]=".dat";
     printf("----------------------------------------------\n");
+    printf("                  保存学生信息                \n");
     printf("     1---本科生                2---研究生     \n");
-    printf("                  0---退出                    \n");
+    printf("                    3---退出                  \n");
     printf("----------------------------------------------\n\n");
     printf("请选择菜单编号：");
     do
     {
         enterNUM(&stuType);
-        if (stuType!=1 && stuType!=2 && stuType!=0) printf("错误！请输入正确的数字：");
-    } while (stuType!=1 && stuType!=2 && stuType!=0);
+        if (stuType!=1 && stuType!=2 && stuType!=3) printf("错误！请输入正确的数字：");
+    } while (stuType!=1 && stuType!=2 && stuType!=3);
     system("cls");
-    if(stuType==0)
+    if(stuType==3)
     {
         printf("谢谢使用！");
         system("pause");
         system("cls");
-        return;
+        return 0;
     }
     printf("请输入保存路径（请输入正确的路径，否则会保存失败或保存到默认目录）：");
     enterStr(filePath,150);
@@ -397,12 +398,11 @@ void saveToFile() //另存为
             for(j=pathLen+1;j>i+1;j--)
                 filePath[j]=filePath[j-1];
             i++;
-            n++;
             filePath[i]='\\';
         }
     }
     pathLen=strlen(filePath);
-    if(n>1)
+    if(filePath[pathLen-1]!='\\')
     {
         for(i=0;i<2;i++)
             filePath[pathLen+i]='\\';
@@ -421,7 +421,7 @@ void saveToFile() //另存为
             printf("保存失败，请检查保存路径是否正确！");
             system("pause");
             system("cls");
-            return;
+            return 1;
         }
         if(stuType==1) saveToUgtxt(fp);
         else saveToPgtxt(fp);
@@ -435,11 +435,12 @@ void saveToFile() //另存为
             printf("保存失败，请检查保存路径是否正确！");
             system("pause");
             system("cls");
-            return;
+            return 1;
         }
         if(stuType==1) saveToUgdat(fp);
         else saveToPgdat(fp);
     }
     system("pause");
     system("cls");
+    return 1;
 }

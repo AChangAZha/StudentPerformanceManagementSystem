@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "tool.h"
 
-void outputMenu()
+void outputMainMenu()
 {
     printf("----------------------------------------------\n");
     printf("               学生成绩管理系统                 \n");
