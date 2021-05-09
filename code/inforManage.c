@@ -169,6 +169,7 @@ void alterData()  //修改学生基本信息
     else if((pPtr=serchPg(num))!=NULL) pflag=1;
     else
     {
+        system("cls");
         printf("没有找到该学生！\n");
         system("pause");
         system("cls");
@@ -179,11 +180,7 @@ void alterData()  //修改学生基本信息
     {
         while(1)
         {
-            printf("%-10s%-8s%-12s%-6s%-20s%-20s\n","培养层次","学号","姓名","性别","专业","班级");
-            printf("%-10s%-8d%-12s","本科",uPtr->data.num,uPtr->data.name);
-            if(uPtr->data.sex==male) printf("%-6s","男");
-            else printf("%-6s","女");
-            printf("%-20s%-20s\n",uPtr->data.speciaty,uPtr->data.classes);
+            outputUgInfor(uPtr);
             printf("----------------------------------------------\n");
             printf("  1---修改姓名                  2---修改性别  \n");
             printf("  3---修改专业                  4---修改班级  \n");
@@ -227,17 +224,16 @@ void alterData()  //修改学生基本信息
                 }
                 case 5:
                 {
+                    system("cls");
                     printf("谢谢使用！\n");
-                    break;
+                    system("pause");
+                    system("cls");
+                    return;
                 }
             }
-            if(item==5)
-            {
-                system("pause");
-                system("cls");
-                break;
-            }
-            printf("修改成功！请选择下一操作（1.继续修改 2.退出）：");
+            system("cls");
+            outputUgInfor(uPtr);
+            printf("\n修改成功！请选择下一操作（1.继续修改 2.退出）：");
             do
             {
                 enterNUM(&opt);
@@ -245,10 +241,11 @@ void alterData()  //修改学生基本信息
             } while (opt!=1 && opt!=2);
             if(opt==2)
             {
+                system("cls");
                 printf("谢谢使用！\n");
                 system("pause");
                 system("cls");
-                break;
+                return;
             }
             system("cls");
         }
@@ -257,12 +254,7 @@ void alterData()  //修改学生基本信息
     {
         while(1)
         {
-            printf("%-10s%-8s%-12s%-6s%-20s%-20s%-20s%-12s\n","培养层次","学号","姓名","性别","专业","班级","研究方向","导师");
-            printf("%-10s%-8d%-12s","研究生",pPtr->data.num,pPtr->data.name);
-            if(pPtr->data.sex==male) printf("%-6s","男");
-            else printf("%-6s","女");
-            printf("%-20s%-20s%-20s%-12s\n",pPtr->data.speciaty,pPtr->data.classes,pPtr->data.rschFields,pPtr->data.advisor);
-
+            outputPgInfor(pPtr);
             printf("----------------------------------------------\n");
             printf("  1---修改姓名                  2---修改性别  \n");
             printf("  3---修改专业                  4---修改班级  \n");
@@ -273,8 +265,8 @@ void alterData()  //修改学生基本信息
             do
             {
                 enterNUM(&item);
-                if (item>5 || item<1) printf("菜单编号输入错误，请重新输入：");
-            } while (item>5 || item<1);
+                if (item>7 || item<1) printf("菜单编号输入错误，请重新输入：");
+            } while (item>7 || item<1);
             switch(item){
                 case 1:
                 {
@@ -319,16 +311,15 @@ void alterData()  //修改学生基本信息
                 }
                 case 7:
                 {
+                    system("cls");
                     printf("谢谢使用！\n");
-                    break;
+                    system("pause");
+                    system("cls");
+                    return;
                 }
             }
-            if(item==7)
-            {
-                system("pause");
-                system("cls");
-                break;
-            }
+            system("cls");
+            outputPgInfor(pPtr);
             printf("修改成功！请选择下一操作（1.继续修改 2.退出）：");
             do
             {
@@ -337,10 +328,11 @@ void alterData()  //修改学生基本信息
             } while (opt!=1 && opt!=2);
             if(opt==2)
             {
+                system("cls");
                 printf("谢谢使用！\n");
                 system("pause");
                 system("cls");
-                break;
+                return;
             }
             system("cls");
         }
