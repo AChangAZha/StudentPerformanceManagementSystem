@@ -20,6 +20,7 @@ int main()
         {
             system("cls");
             printf("谢谢使用！");
+            system("pause");
             return 0;
         }
         system("cls");
@@ -41,6 +42,7 @@ int main()
                 {
                     printf("谢谢使用！");
                     listDestroy();
+                    system("pause");
                     return 0;
                 }
                 if(item==2) break;
@@ -62,6 +64,7 @@ int main()
                 {
                     printf("谢谢使用！");
                     listDestroy();
+                    system("pause");
                     return 0;
                 }
                 if(item==2) break;
