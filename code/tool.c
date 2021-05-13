@@ -1,6 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "tool.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "model.h"
 
@@ -12,6 +13,8 @@ void enterNUM(int *num) //从键盘输入数字
         while (getchar() != '\n')
             ;
     }
+    while (getchar() != '\n')
+        ;
 }
 
 void enterStr(char *str, int num) //输入字符串
@@ -33,7 +36,7 @@ void enterStr(char *str, int num) //输入字符串
                 ;
             printf("字数超过限制，请重新输入：");
         }
-        else
+        else if (tmp[0] != '\n' && tmp[i] == '\n')
             break;
     }
     tmp[i] = '\0';
@@ -60,4 +63,22 @@ void outputPgInfor(pgnode *pPtr)
     else
         printf("%-6s", "女");
     printf("%-20s%-20s%-20s%-12s\n", pPtr->data.speciaty, pPtr->data.classes, pPtr->data.rschFields, pPtr->data.advisor);
+}
+
+void about()
+{
+    printf("----------------------------------------------------\n");
+    printf("                  学生成绩管理系统                 \n");
+    printf("                  version 1.0 Alpha                  \n");
+    printf("                       2021/5                     \n");
+    printf("                    东莞理工学院                   \n");
+    printf("                  网络空间安全学院                 \n");
+    printf("                   2020软件卓越2班                 \n");
+    printf("                   指导教师：肖捷                  \n");
+    printf("         作者邮箱：202041404130@dgut.edu.cn        \n");
+    printf("   代码库：https://github.com/AChangAZha/Student   \n");
+    printf("           Copyright (C) 2021 张瀚 陈蕴鋆          \n");
+    printf("----------------------------------------------------\n");
+    system("pause");
+    system("cls");
 }

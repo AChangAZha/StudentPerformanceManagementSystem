@@ -1,9 +1,9 @@
 #define _CRT_SECURE_NO_WARNINGS
+#include "model.h"
 #include "inforManage.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "model.h"
 #include "inquire.h"
 #include "tool.h"
 
@@ -171,8 +171,8 @@ void inforSearch() //查询学生基本信息
 void alterData() //修改学生基本信息
 {
     int uflag, pflag, num, item, sex, opt;
-    ugnode *uPtr;
-    pgnode *pPtr;
+    ugnode *uPtr = NULL;
+    pgnode *pPtr = NULL;
     printf("请输入要修改信息的学生的学号：");
     enterNUM(&num);
 

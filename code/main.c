@@ -116,7 +116,7 @@ int main()
             break;
         }
         case 6:
-            printf("待开发\n");
+            about();
             break;
         case 7:
             break;
