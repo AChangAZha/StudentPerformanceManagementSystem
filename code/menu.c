@@ -24,8 +24,9 @@ int initiateMenu()
     do
     {
         enterNUM(&item);
-        if (item<1 || item>2) printf("错误！请输入正确的数字：");
-    } while (item<1 || item>2);
+        if (item < 1 || item > 2)
+            printf("错误！请输入正确的数字：");
+    } while (item < 1 || item > 2);
     return item;
 }
 
@@ -40,8 +41,9 @@ int readTxtMenu()
     do
     {
         enterNUM(&item);
-        if (item<1 || item>2) printf("错误！请输入正确的数字：");
-    } while (item<1 || item>2);
+        if (item < 1 || item > 2)
+            printf("错误！请输入正确的数字：");
+    } while (item < 1 || item > 2);
     return item;
 }
 
@@ -57,8 +59,9 @@ int readDatMenu()
     do
     {
         enterNUM(&item);
-        if (item<1 || item>3) printf("错误！请输入正确的数字：");
-    } while (item<1 || item>3);
+        if (item < 1 || item > 3)
+            printf("错误！请输入正确的数字：");
+    } while (item < 1 || item > 3);
     return item;
 }
 
@@ -73,7 +76,8 @@ int saveMenu()
     do
     {
         enterNUM(&item);
-        if (item<1 || item>2) printf("错误！请输入正确的数字：");
-    } while (item<1 || item>2);
+        if (item < 1 || item > 2)
+            printf("错误！请输入正确的数字：");
+    } while (item < 1 || item > 2);
     return item;
 }
