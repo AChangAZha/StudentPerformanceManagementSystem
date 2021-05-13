@@ -6,5 +6,8 @@ int initiateMenu();
 int readTxtMenu();
 int readDatMenu();
 int saveMenu();
+int dataManageMenu();
+int inforManageMenu();
+int addStuMenu();
 
 #endif

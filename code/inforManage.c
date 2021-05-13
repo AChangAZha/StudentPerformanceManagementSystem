@@ -58,7 +58,7 @@ void addUgNode() //添加本科生
         sex = 0;
     }
     system("cls");
-    printf("\n成功添加%d个本科生！", count - 1);
+    printf("成功添加%d个本科生！", count - 1);
     system("pause");
     system("cls");
     return;
@@ -117,7 +117,7 @@ void addPgNode() //添加研究生
         sex = 0;
     }
     system("cls");
-    printf("\n成功添加%d个研究生！", count - 1);
+    printf("成功添加%d个研究生！", count - 1);
     system("pause");
     system("cls");
     return;
@@ -148,7 +148,7 @@ void inforSearch() //查询学生基本信息
         }
         else
             printf("没有查询到相关信息！\n");
-        printf("请选择 1.继续查询 2.返回：");
+        printf("\n请选择 1.继续查询 2.返回：");
         do
         {
             enterNUM(&opt);
@@ -157,9 +157,6 @@ void inforSearch() //查询学生基本信息
         } while (opt != 1 && opt != 2);
         if (opt == 2)
         {
-            system("cls");
-            printf("谢谢使用！");
-            system("pause");
             system("cls");
             return;
         }
@@ -242,9 +239,6 @@ void alterData() //修改学生基本信息
             case 5:
             {
                 system("cls");
-                printf("谢谢使用！\n");
-                system("pause");
-                system("cls");
                 return;
             }
             }
@@ -259,9 +253,6 @@ void alterData() //修改学生基本信息
             } while (opt != 1 && opt != 2);
             if (opt == 2)
             {
-                system("cls");
-                printf("谢谢使用！\n");
-                system("pause");
                 system("cls");
                 return;
             }
@@ -333,9 +324,6 @@ void alterData() //修改学生基本信息
             case 7:
             {
                 system("cls");
-                printf("谢谢使用！\n");
-                system("pause");
-                system("cls");
                 return;
             }
             }
@@ -350,9 +338,6 @@ void alterData() //修改学生基本信息
             } while (opt != 1 && opt != 2);
             if (opt == 2)
             {
-                system("cls");
-                printf("谢谢使用！\n");
-                system("pause");
                 system("cls");
                 return;
             }

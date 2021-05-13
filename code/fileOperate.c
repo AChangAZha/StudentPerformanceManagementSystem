@@ -403,12 +403,7 @@ int saveToFile() //另存为
     } while (stuType != 1 && stuType != 2 && stuType != 3);
     system("cls");
     if (stuType == 3)
-    {
-        printf("谢谢使用！");
-        system("pause");
-        system("cls");
         return 0;
-    }
     printf("请输入保存路径（请输入正确的路径，否则会保存失败或保存到默认目录）：");
     enterStr(filePath, 80);
     printf("请输入文件名：");

@@ -95,7 +95,8 @@ int main()
         switch (item)
         {
         case 1:
-            printf("待开发\n");
+            while ((dataManageMenu()) != 3)
+                ;
             break;
         case 2:
             printf("待开发\n");
@@ -107,14 +108,9 @@ int main()
             printf("待开发\n");
             break;
         case 5:
-        {
-            while (1)
-            {
-                if ((saveToFile()) == 0)
-                    break;
-            }
+            while ((saveToFile()) != 0)
+                ;
             break;
-        }
         case 6:
             about();
             break;
