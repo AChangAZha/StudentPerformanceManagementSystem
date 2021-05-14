@@ -26,7 +26,7 @@ int initiateMenu()
     printf("\n请选择：");
     do
     {
-        enterNUM(&item);
+        enterNum(&item);
         if (item < 1 || item > 2)
             printf("错误！请输入正确的数字：");
     } while (item < 1 || item > 2);
@@ -43,7 +43,7 @@ int readTxtMenu()
     printf("\n请选择：");
     do
     {
-        enterNUM(&item);
+        enterNum(&item);
         if (item < 1 || item > 2)
             printf("错误！请输入正确的数字：");
     } while (item < 1 || item > 2);
@@ -61,7 +61,7 @@ int readDatMenu()
     printf("\n请选择：");
     do
     {
-        enterNUM(&item);
+        enterNum(&item);
         if (item < 1 || item > 3)
             printf("错误！请输入正确的数字：");
     } while (item < 1 || item > 3);
@@ -78,7 +78,7 @@ int saveMenu()
     printf("\n请选择：");
     do
     {
-        enterNUM(&item);
+        enterNum(&item);
         if (item < 1 || item > 2)
             printf("错误！请输入正确的数字：");
     } while (item < 1 || item > 2);
@@ -97,7 +97,7 @@ int dataManageMenu()
     printf("\n请选择：");
     do
     {
-        enterNUM(&item);
+        enterNum(&item);
         if (item < 1 || item > 3)
             printf("错误！请输入正确的数字：");
     } while (item < 1 || item > 3);
@@ -128,7 +128,7 @@ int inforManageMenu()
     printf("\n请选择：");
     do
     {
-        enterNUM(&item);
+        enterNum(&item);
         if (item < 1 || item > 5)
             printf("错误！请输入正确的数字：");
     } while (item < 1 || item > 5);
@@ -164,7 +164,7 @@ int addStuMenu()
     printf("\n请选择：");
     do
     {
-        enterNUM(&item);
+        enterNum(&item);
         if (item < 1 || item > 3)
             printf("错误！请输入正确的数字：");
     } while (item < 1 || item > 3);
@@ -193,7 +193,7 @@ int scoreManageMenu()
     printf("\n请选择：");
     do
     {
-        enterNUM(&item);
+        enterNum(&item);
         if (item < 1 || item > 5)
             printf("错误！请输入正确的数字：");
     } while (item < 1 || item > 5);
@@ -204,10 +204,10 @@ int scoreManageMenu()
         inputScore();
         break;
     case 2:
-        printf("待开发\n");
+        alterScore();
         break;
     case 3:
-        printf("待开发\n");
+        deleteScore();
         break;
     case 4:
         scoreSearch();

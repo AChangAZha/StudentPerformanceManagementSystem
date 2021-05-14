@@ -34,7 +34,7 @@ void addUgNode() //添加本科生
         printf("性别(请选择) 1.男 2.女：");
         do
         {
-            enterNUM(&sex);
+            enterNum(&sex);
             if (sex != 1 && sex != 2)
                 printf("错误！请输入正确的数字：");
         } while (sex != 1 && sex != 2);
@@ -90,7 +90,7 @@ void addPgNode() //添加研究生
         printf("性别(请选择) 1.男 2.女：");
         do
         {
-            enterNUM(&sex);
+            enterNum(&sex);
             if (sex != 1 && sex != 2)
                 printf("错误！请输入正确的数字：");
         } while (sex != 1 && sex != 2);
@@ -133,7 +133,7 @@ void inforSearch() //查询学生基本信息
         system("cls");
         //每个学号对应一个学生，不区分本科生和研究生
         printf("请输入学号：");
-        enterNUM(&num);
+        enterNum(&num);
         //需要在两个链表中搜寻
         //调用查找函数(在inquire.c中定义)
         if ((uPtr = serchUg(num)) != NULL)
@@ -151,7 +151,7 @@ void inforSearch() //查询学生基本信息
         printf("\n请选择 1.继续查询 2.返回：");
         do
         {
-            enterNUM(&opt);
+            enterNum(&opt);
             if (opt != 1 && opt != 2)
                 printf("错误！请输入正确的数字：");
         } while (opt != 1 && opt != 2);
@@ -171,7 +171,7 @@ void alterData() //修改学生基本信息
     ugnode *uPtr = NULL;
     pgnode *pPtr = NULL;
     printf("请输入要修改信息的学生的学号：");
-    enterNUM(&num);
+    enterNum(&num);
 
     if ((uPtr = serchUg(num)) != NULL)
         uflag = 1;
@@ -199,7 +199,7 @@ void alterData() //修改学生基本信息
             printf("\n请输入菜单编号：");
             do
             {
-                enterNUM(&item);
+                enterNum(&item);
                 if (item > 5 || item < 1)
                     printf("菜单编号输入错误，请重新输入：");
             } while (item > 5 || item < 1);
@@ -216,7 +216,7 @@ void alterData() //修改学生基本信息
                 printf("请修改性别(请选择) 1.男 2.女：");
                 do
                 {
-                    enterNUM(&sex);
+                    enterNum(&sex);
                     if (sex != 1 && sex != 2)
                         printf("错误！请输入正确的数字：");
                 } while (sex != 1 && sex != 2);
@@ -246,7 +246,7 @@ void alterData() //修改学生基本信息
             printf("\n修改成功！请选择下一操作（1.继续修改 2.退出）：");
             do
             {
-                enterNUM(&opt);
+                enterNum(&opt);
                 if (opt != 1 && opt != 2)
                     printf("错误！请输入正确的数字：");
             } while (opt != 1 && opt != 2);
@@ -272,7 +272,7 @@ void alterData() //修改学生基本信息
             printf("\n请输入菜单编号：");
             do
             {
-                enterNUM(&item);
+                enterNum(&item);
                 if (item > 7 || item < 1)
                     printf("菜单编号输入错误，请重新输入：");
             } while (item > 7 || item < 1);
@@ -289,7 +289,7 @@ void alterData() //修改学生基本信息
                 printf("请修改性别(请选择) 1.男 2.女：");
                 do
                 {
-                    enterNUM(&sex);
+                    enterNum(&sex);
                     if (sex != 1 && sex != 2)
                         printf("错误！请输入正确的数字：");
                 } while (sex != 1 && sex != 2);
@@ -331,7 +331,7 @@ void alterData() //修改学生基本信息
             printf("修改成功！请选择下一操作（1.继续修改 2.退出）：");
             do
             {
-                enterNUM(&opt);
+                enterNum(&opt);
                 if (opt != 1 && opt != 2)
                     printf("错误！请输入正确的数字：");
             } while (opt != 1 && opt != 2);
@@ -351,7 +351,7 @@ int deleteData()
     ugnode *uPtr = ugHead, *uTmp;
     pgnode *pPtr = pgHead, *pTmp;
     printf("请输入要删除信息的学生的学号：");
-    enterNUM(&num);
+    enterNum(&num);
 
     while (uPtr->next != NULL)
     {
@@ -399,7 +399,7 @@ int deleteData()
         printf("找不到该学生！\n");
 
     printf("\n请选择（1.继续删除学生 2.退出）： ");
-    enterNUM(&item);
+    enterNum(&item);
     system("cls");
     return item;
 }

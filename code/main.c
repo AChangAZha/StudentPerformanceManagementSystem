@@ -7,6 +7,7 @@
 #include "inforManage.h"
 #include "tool.h"
 #include "menu.h"
+#include "scoreManage.h"
 
 int main()
 {
@@ -75,6 +76,7 @@ int main()
         }
         system("cls");
     }
+    calculate();
     printf("\n欢迎使用学生成绩管理系统！");
     system("pause");
     system("cls");
@@ -87,7 +89,7 @@ int main()
         printf("\n请输入菜单编号：");
         do
         {
-            enterNUM(&item);
+            enterNum(&item);
             if (item < 1 || item > 7)
                 printf("错误！请输入正确的数字：");
         } while (item < 1 || item > 7);

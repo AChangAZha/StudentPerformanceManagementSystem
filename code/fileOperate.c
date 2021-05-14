@@ -397,7 +397,7 @@ int saveToFile() //另存为
     printf("请选择菜单编号：");
     do
     {
-        enterNUM(&stuType);
+        enterNum(&stuType);
         if (stuType != 1 && stuType != 2 && stuType != 3)
             printf("错误！请输入正确的数字：");
     } while (stuType != 1 && stuType != 2 && stuType != 3);
@@ -411,7 +411,7 @@ int saveToFile() //另存为
     printf("请选择保存类型 1.txt 2.dat：");
     do
     {
-        enterNUM(&fileType);
+        enterNum(&fileType);
         if (fileType != 1 && fileType != 2)
             printf("错误！请输入正确的数字：");
     } while (fileType != 1 && fileType != 2);

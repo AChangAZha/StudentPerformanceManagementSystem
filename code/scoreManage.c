@@ -5,6 +5,7 @@
 #include "model.h"
 #include "inquire.h"
 #include "tool.h"
+#include "rankCalculate.h"
 
 void scoreSearch() //查询学生成绩
 {
@@ -16,7 +17,7 @@ void scoreSearch() //查询学生成绩
         system("cls");
         //每个学号对应一个学生，不区分本科生和研究生
         printf("请输入学号：");
-        enterNUM(&num);
+        enterNum(&num);
         //需要在两个链表中搜寻
         //调用查找函数(在inquire.c中定义)
         if ((uPtr = serchUg(num)) != NULL)
@@ -34,7 +35,7 @@ void scoreSearch() //查询学生成绩
         printf("\n请选择 1.继续查询 2.返回：");
         do
         {
-            enterNUM(&opt);
+            enterNum(&opt);
             if (opt != 1 && opt != 2)
                 printf("错误！请输入正确的数字：");
         } while (opt != 1 && opt != 2);
@@ -60,7 +61,7 @@ void inputScore()
     {
         system("cls");
         printf("请输入要录入成绩的学生的学号（输入0结束录入）：");
-        enterNUM(&num);
+        enterNum(&num);
         if (num == 0)
         {
             system("cls");
@@ -85,7 +86,7 @@ void inputScore()
                 printf("请输入该本科生的高数成绩：");
                 do
                 {
-                    enterNUM(&uPtr->data.math);
+                    enterNum(&uPtr->data.math);
                     if (uPtr->data.math < -1 || uPtr->data.math > 100)
                         printf("成绩取值范围为0-100，请重新输入：");
                 } while (uPtr->data.math < -1 || uPtr->data.math > 100);
@@ -95,7 +96,7 @@ void inputScore()
                 printf("请输入该本科生的英语成绩：");
                 do
                 {
-                    enterNUM(&uPtr->data.english);
+                    enterNum(&uPtr->data.english);
                     if (uPtr->data.english < -1 || uPtr->data.english > 100)
                         printf("成绩取值范围为0-100，请重新输入：");
                 } while (uPtr->data.english < -1 || uPtr->data.english > 100);
@@ -105,12 +106,12 @@ void inputScore()
                 printf("请输入该本科生的C语言成绩：");
                 do
                 {
-                    enterNUM(&uPtr->data.cLanguguage);
+                    enterNum(&uPtr->data.cLanguguage);
                     if (uPtr->data.cLanguguage < -1 || uPtr->data.cLanguguage > 100)
                         printf("成绩取值范围为0-100，请重新输入：");
                 } while (uPtr->data.cLanguguage < -1 || uPtr->data.cLanguguage > 100);
             }
-
+            calculate();
             printf("\n第%d位学生成绩录入结束\n", fi);
         }
 
@@ -132,7 +133,7 @@ void inputScore()
                 printf("请输入该研究生的课程综合成绩：");
                 do
                 {
-                    enterNUM(&pPtr->data.compCourse);
+                    enterNum(&pPtr->data.compCourse);
                     if (pPtr->data.compCourse < -1 || pPtr->data.compCourse > 100)
                         printf("成绩取值范围为0-100，请重新输入：");
                 } while (pPtr->data.compCourse < -1 || pPtr->data.compCourse > 100);
@@ -142,16 +143,238 @@ void inputScore()
                 printf("请输入该研究生的论文成绩：");
                 do
                 {
-                    enterNUM(&pPtr->data.thesis);
+                    enterNum(&pPtr->data.thesis);
                     if (pPtr->data.thesis < -1 || pPtr->data.thesis > 100)
                         printf("成绩取值范围为0-100，请重新输入：");
                 } while (pPtr->data.thesis < -1 || pPtr->data.thesis > 100);
             }
+            calculate();
             printf("\n第%d位学生成绩录入结束\n", fi);
         }
         else
             printf("\n找不到该学生！\n"); //找不到对应学号的学生
         system("pause");
+    }
+}
+
+void alterScore()
+{
+    int uflag = 0, pflag = 0, num, item, opt;
+    ugnode *uPtr;
+    pgnode *pPtr;
+    printf("请输入要修改信息的学生的学号：");
+    enterNum(&num);
+
+    if ((uPtr = serchUg(num)) != NULL)
+        uflag = 1;
+    else if ((pPtr = serchPg(num)) != NULL)
+        pflag = 1;
+    else
+    {
+        system("cls");
+        printf("没有找到该学生！\n");
+        system("pause");
+        system("cls");
+        return;
+    }
+    system("cls");
+
+    if (uflag == 1) //若uflag为一，则表示所输入学号是本科生的，否则为研究生的学号
+    {
+        while (1)
+        {
+            outputUgScore(uPtr);
+            printf("------------------------------------------\n");
+            printf("   1.修改高数成绩      2.修改英语成绩       \n");
+            printf("   3.修改C语言成绩     4.退出              \n");
+            printf("------------------------------------------\n");
+            printf("\n请输入菜单编号：");
+            do
+            {
+                enterNum(&item);
+                if (item < 1 || item > 4)
+                    printf("错误！请输入正确的数字：");
+            } while (item < 1 || item > 4);
+            printf("\n正在修改成绩（输入-1可删除该科成绩）\n");
+            switch (item)
+            {
+            case 1:
+            {
+                printf("请输入高数成绩：");
+                do
+                {
+                    enterNum(&uPtr->data.math);
+                    if (uPtr->data.math < -1 || uPtr->data.math > 100)
+                        printf("成绩取值范围为0-100，请重新输入：");
+                } while (uPtr->data.math < -1 || uPtr->data.math > 100);
+                break;
+            }
+            case 2:
+            {
+                printf("请输入英语成绩：");
+                do
+                {
+                    enterNum(&uPtr->data.english);
+                    if (uPtr->data.english < -1 || uPtr->data.english > 100)
+                        printf("成绩取值范围为0-100，请重新输入：");
+                } while (uPtr->data.english < -1 || uPtr->data.english > 100);
+                break;
+            }
+            case 3:
+            {
+                printf("请输入C语言成绩：\n");
+                do
+                {
+                    enterNum(&uPtr->data.cLanguguage);
+                    if (uPtr->data.cLanguguage < -1 || uPtr->data.cLanguguage > 100)
+                        printf("成绩取值范围为0-100，请重新输入：");
+                } while (uPtr->data.cLanguguage < -1 || uPtr->data.cLanguguage > 100);
+                break;
+            }
+            case 4:
+            {
+                system("cls");
+                return;
+            }
+            }
+            system("cls");
+            calculate();
+            outputUgScore(uPtr);
+            printf("\n修改成功！请选择下一操作（1.继续修改 2.退出）：");
+            do
+            {
+                enterNum(&opt);
+                if (opt != 1 && opt != 2)
+                    printf("错误！请输入正确的数字：");
+            } while (opt != 1 && opt != 2);
+            if (opt == 2)
+            {
+                system("cls");
+                return;
+            }
+            system("cls");
+        }
+    }
+    else
+    {
+        while (1)
+        {
+            outputPgScore(pPtr);
+            printf("---------------------------------------------------\n");
+            printf("   1---修改课程综合成绩      2----修改论文成绩       \n");
+            printf("                     3---退出                      \n");
+            printf("---------------------------------------------------\n");
+            printf("\n请输入菜单编号：");
+            do
+            {
+                enterNum(&item);
+                if (item > 3 || item < 1)
+                    printf("菜单编号输入错误，请重新输入：");
+            } while (item > 3 || item < 1);
+            printf("\n正在修改成绩（输入-1可删除该科成绩）\n");
+            switch (item)
+            {
+            case 1:
+            {
+                printf("请输入课程综合成绩：");
+                do
+                {
+                    enterNum(&pPtr->data.compCourse);
+                    if (pPtr->data.compCourse < -1 || pPtr->data.compCourse > 100)
+                        printf("成绩取值范围为0-100，请重新输入：");
+                } while (pPtr->data.compCourse < -1 || pPtr->data.compCourse > 100);
+                break;
+            }
+            case 2:
+            {
+                printf("请输入论文成绩：");
+                do
+                {
+                    enterNum(&pPtr->data.thesis);
+                    if (pPtr->data.thesis < -1 || pPtr->data.thesis > 100)
+                        printf("成绩取值范围为0-100，请重新输入：");
+                } while (pPtr->data.thesis < -1 || pPtr->data.thesis > 100);
+                break;
+            }
+            case 3:
+            {
+                system("cls");
+                return;
+            }
+            }
+            system("cls");
+            calculate();
+            outputPgScore(pPtr);
+            printf("修改成功！请选择下一操作（1.继续修改 2.退出）：");
+            do
+            {
+                enterNum(&opt);
+                if (opt != 1 && opt != 2)
+                    printf("错误！请输入正确的数字：");
+            } while (opt != 1 && opt != 2);
+            if (opt == 2)
+            {
+                system("cls");
+                return;
+            }
+            system("cls");
+        }
+    }
+}
+
+void deleteScore()
+{
+    int n, fi;
+    ugnode *p;
+    pgnode *q;
+
+    while (1)
+    {
+        system("cls");
+        printf("请输入要删除成绩的学生的学号：");
+        enterNum(&n);
+        if ((p = serchUg(n)) != NULL)
+        {
+            outputUgScore(p);
+            if (p->data.math == -1 && p->data.english == -1 && p->data.cLanguguage == -1)
+                printf("\n该学生暂无成绩！\n");
+            else
+            {
+                p->data.math = -1;
+                p->data.english = -1;
+                p->data.cLanguguage = -1;
+                printf("\n删除成功！\n");
+                calculate();
+            }
+            printf("请选择下一操作（1.继续删除 2.退出 ）：");
+            enterNum(&fi);
+        }
+        else if ((q = serchPg(n)) != NULL)
+        {
+            outputPgScore(q);
+            if (q->data.compCourse == -1 && q->data.thesis == -1)
+                printf("\n该学生暂无成绩！\n");
+            else
+            {
+                q->data.compCourse = -1;
+                q->data.thesis = -1;
+                printf("\n删除成功！\n");
+                calculate();
+            }
+            printf("请选择下一操作（1.继续删除 2.退出 ）：");
+            enterNum(&fi);
+        }
+        else
+        {
+            printf("\n找不到该学生！\n");
+            printf("请选择下一操作（1.继续删除 2.退出 ）：");
+            enterNum(&fi);
+        }
+        if (fi == 2)
+        {
+            system("cls");
+            break;
+        }
     }
 }
 
@@ -164,12 +387,18 @@ void calculate() //计算总成绩、排名
         //只有所有成绩均为有效成绩才可以计算
         if (uPtr->data.math != -1 && uPtr->data.english != -1 && uPtr->data.cLanguguage != -1)
             uPtr->data.totalScore = uPtr->data.math + uPtr->data.english + uPtr->data.cLanguguage;
+        else
+            uPtr->data.totalScore = -1;
         uPtr = uPtr->next;
     }
     while (pPtr != NULL) //计算研究生总成绩
     {
         if (pPtr->data.compCourse != -1 && pPtr->data.thesis != -1)
             pPtr->data.totalScore = pPtr->data.compCourse + pPtr->data.thesis;
+        else
+            pPtr->data.totalScore = -1;
         pPtr = pPtr->next;
     }
+    classRankCalculate();
+    schoolRankCalculate();
 }

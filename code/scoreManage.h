@@ -3,6 +3,8 @@
 
 void scoreSearch();
 void inputScore();
+void alterScore();
+void deleteScore();
 void calculate();
 
 #endif
