@@ -2,9 +2,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "model.h"
+#include "inquire.h"
 #include "fileOperate.h"
 #include "inforManage.h"
-#include "scoreManage.h"
 #include "tool.h"
 #include "menu.h"
 

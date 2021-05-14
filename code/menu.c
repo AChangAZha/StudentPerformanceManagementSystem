@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include "tool.h"
 #include "inforManage.h"
+#include "scoreManage.h"
 
 void outputMainMenu()
 {
@@ -108,7 +109,8 @@ int dataManageMenu()
             ;
         break;
     case 2:
-        printf("待开发\n");
+        while ((scoreManageMenu()) != 5)
+            ;
         break;
     }
     return item;
@@ -141,7 +143,8 @@ int inforManageMenu()
         alterData();
         break;
     case 3:
-        printf("待开发\n");
+        while ((deleteData()) != 2)
+            ;
         break;
     case 4:
         inforSearch();
@@ -173,6 +176,41 @@ int addStuMenu()
         break;
     case 2:
         addPgNode();
+        break;
+    }
+    return item;
+}
+
+int scoreManageMenu()
+{
+    int item = 0;
+    printf("----------------------------------------------\n");
+    printf("              成绩数据的维护管理               \n");
+    printf("    1---录入成绩               2---修改成绩     \n");
+    printf("    3---删除成绩               4---查询成绩     \n");
+    printf("                   5---返回                    \n");
+    printf("----------------------------------------------\n");
+    printf("\n请选择：");
+    do
+    {
+        enterNUM(&item);
+        if (item < 1 || item > 5)
+            printf("错误！请输入正确的数字：");
+    } while (item < 1 || item > 5);
+    system("cls");
+    switch (item)
+    {
+    case 1:
+        inputScore();
+        break;
+    case 2:
+        printf("待开发\n");
+        break;
+    case 3:
+        printf("待开发\n");
+        break;
+    case 4:
+        scoreSearch();
         break;
     }
     return item;

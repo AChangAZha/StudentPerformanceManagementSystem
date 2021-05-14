@@ -65,11 +65,67 @@ void outputPgInfor(pgnode *pPtr)
     printf("%-20s%-20s%-20s%-12s\n", pPtr->data.speciaty, pPtr->data.classes, pPtr->data.rschFields, pPtr->data.advisor);
 }
 
+void outputUgScore(ugnode *uPtr)
+{
+    printf("%-10s%-10s%-10s%-10s%-10s%-10s%-10s%-10s%-10s\n", "培养层次", "学号", "姓名", "高数", "英语", "C语言", "总成绩", "班级排名", "校级排名");
+    printf("%-10s%-10d%-10s", "本科", uPtr->data.num, uPtr->data.name);
+    if (uPtr->data.math != -1)
+        printf("%-10d", uPtr->data.math);
+    else
+        printf("%-10s", "暂无数据");
+    if (uPtr->data.english != -1)
+        printf("%-10d", uPtr->data.english);
+    else
+        printf("%-10s", "暂无数据");
+    if (uPtr->data.cLanguguage != -1)
+        printf("%-10d", uPtr->data.cLanguguage);
+    else
+        printf("%-10s", "暂无数据");
+    if (uPtr->data.totalScore != -1)
+        printf("%-10d", uPtr->data.totalScore);
+    else
+        printf("%-10s", "暂无数据");
+    if (uPtr->data.classRank != -1)
+        printf("%-10d", uPtr->data.classRank);
+    else
+        printf("%-10s", "暂无数据");
+    if (uPtr->data.schoolRank != -1)
+        printf("%-10d\n", uPtr->data.schoolRank);
+    else
+        printf("%-10s\n", "暂无数据");
+}
+
+void outputPgScore(pgnode *pPtr)
+{
+    printf("%-10s%-10s%-10s%-14s%-10s%-10s%-10s%-10s\n", "培养层次", "学号", "姓名", "课程综合成绩", "论文成绩", "总成绩", "班级排名", "校级排名");
+    printf("%-10s%-10d%-10s", "研究生", pPtr->data.num, pPtr->data.name);
+    if (pPtr->data.compCourse != -1)
+        printf("%-14d", pPtr->data.compCourse);
+    else
+        printf("%-14s", "暂无数据");
+    if (pPtr->data.thesis != -1)
+        printf("%-10d", pPtr->data.thesis);
+    else
+        printf("%-10s", "暂无数据");
+    if (pPtr->data.totalScore != -1)
+        printf("%-10d", pPtr->data.totalScore);
+    else
+        printf("%-10s", "暂无数据");
+    if (pPtr->data.classRank != -1)
+        printf("%-10d", pPtr->data.classRank);
+    else
+        printf("%-10s", "暂无数据");
+    if (pPtr->data.schoolRank != -1)
+        printf("%-10d\n", pPtr->data.schoolRank);
+    else
+        printf("%-10s\n", "暂无数据");
+}
+
 void about()
 {
     printf("----------------------------------------------------\n");
     printf("                  学生成绩管理系统                 \n");
-    printf("                 version 1.0.1 Alpha                  \n");
+    printf("                 version 1.1.0 Alpha                  \n");
     printf("                       2021/5                     \n");
     printf("                    东莞理工学院                   \n");
     printf("                  网络空间安全学院                 \n");

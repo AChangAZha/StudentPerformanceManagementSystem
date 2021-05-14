@@ -167,13 +167,12 @@ void inforSearch() //查询学生基本信息
 
 void alterData() //修改学生基本信息
 {
-    int uflag, pflag, num, item, sex, opt;
+    int uflag = 0, pflag = 0, num, item, sex, opt;
     ugnode *uPtr = NULL;
     pgnode *pPtr = NULL;
     printf("请输入要修改信息的学生的学号：");
     enterNUM(&num);
 
-    uflag = pflag = 0;
     if ((uPtr = serchUg(num)) != NULL)
         uflag = 1;
     else if ((pPtr = serchPg(num)) != NULL)
@@ -344,4 +343,63 @@ void alterData() //修改学生基本信息
             system("cls");
         }
     }
+}
+
+int deleteData()
+{
+    int uflag = 0, pflag = 0, num, item;
+    ugnode *uPtr = ugHead, *uTmp;
+    pgnode *pPtr = pgHead, *pTmp;
+    printf("请输入要删除信息的学生的学号：");
+    enterNUM(&num);
+
+    while (uPtr->next != NULL)
+    {
+        if (uPtr->next->data.num == num)
+        {
+            uflag = 1;
+            break;
+        }
+        uPtr = uPtr->next;
+    }
+    if (uflag == 0)
+    {
+        while (pPtr->next != NULL)
+        {
+            if (pPtr->next->data.num == num)
+            {
+                pflag = 1;
+                break;
+            }
+            pPtr = pPtr->next;
+        }
+    }
+
+    if (uflag == 1) //若uflag为一，则表示所输入学号是本科生的，否则为研究生的学号
+    {
+        uTmp = uPtr->next;
+        outputUgInfor(uTmp);
+        uPtr->next = uTmp->next;
+        if (uTmp->next == NULL)
+            ugTail = uPtr->next;
+        free(uTmp);
+        printf("\n删除成功！\n");
+    }
+    else if (pflag == 1)
+    {
+        pTmp = pPtr->next;
+        outputPgInfor(pTmp);
+        pPtr->next = pTmp->next;
+        if (pTmp->next == NULL)
+            pgTail = pPtr->next;
+        free(pTmp);
+        printf("\n删除成功！\n");
+    }
+    else
+        printf("找不到该学生！\n");
+
+    printf("\n请选择（1.继续删除学生 2.退出）： ");
+    enterNUM(&item);
+    system("cls");
+    return item;
 }
