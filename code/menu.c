@@ -4,6 +4,7 @@
 #include "tool.h"
 #include "inforManage.h"
 #include "scoreManage.h"
+#include "Statistics.h"
 
 void outputMainMenu()
 {
@@ -157,6 +158,7 @@ int addStuMenu()
 {
     int item = 0;
     printf("----------------------------------------------\n");
+    printf("                    添加学生                   \n");
     printf("     1---添加本科生                            \n");
     printf("     2---添加研究生                            \n");
     printf("     3---返回                                 \n");
@@ -211,6 +213,65 @@ int scoreManageMenu()
         break;
     case 4:
         scoreSearch();
+        break;
+    }
+    return item;
+}
+
+int statisticsMenu()
+{
+    int item = 0;
+    printf("----------------------------------------------\n");
+    printf("                    统计成绩                   \n");
+    printf("    1---统计各课程平均成绩                      \n");
+    printf("    2---统计各课程不同等级的学生人数             \n");
+    printf("    3---返回                                   \n");
+    printf("----------------------------------------------\n");
+    printf("\n请选择：");
+    do
+    {
+        enterNum(&item);
+        if (item < 1 || item > 3)
+            printf("错误！请输入正确的数字：");
+    } while (item < 1 || item > 3);
+    system("cls");
+    switch (item)
+    {
+    case 1:
+        while ((choseStuCate()) != 3)
+            ;
+        break;
+    case 2:
+        choseClassCourse();
+        break;
+    }
+    return item;
+}
+
+int choseStuCate()
+{
+    int item = 0;
+    printf("--------------------------------------------------------\n");
+    printf("                      统计平均成绩                       \n");
+    printf("  1.查看本科生成绩统计结果    2.查看研究生成绩统计结果      \n");
+    printf("     (高数、英语、C语言)      (课程综合成绩、论文成绩)     \n");
+    printf("                        3.退出                          \n");
+    printf("--------------------------------------------------------\n");
+    printf("请选择菜单编号：");
+    do
+    {
+        enterNum(&item);
+        if (item < 1 || item > 3)
+            printf("错误！请输入正确的数字：");
+    } while (item < 1 || item > 3);
+    system("cls");
+    switch (item)
+    {
+    case 1:
+        countugAvg();
+        break;
+    case 2:
+        countpgAvg();
         break;
     }
     return item;

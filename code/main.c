@@ -107,7 +107,8 @@ int main()
             printf("待开发\n");
             break;
         case 4:
-            printf("待开发\n");
+            while ((statisticsMenu()) != 3)
+                ;
             break;
         case 5:
             while ((saveToFile()) != 0)

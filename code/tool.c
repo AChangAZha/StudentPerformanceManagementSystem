@@ -125,7 +125,7 @@ void about()
 {
     printf("----------------------------------------------------\n");
     printf("                  学生成绩管理系统                 \n");
-    printf("                 version 1.2.0 Alpha                  \n");
+    printf("                 version 1.3.0 Alpha                  \n");
     printf("                       2021/5                     \n");
     printf("                    东莞理工学院                   \n");
     printf("                  网络空间安全学院                 \n");
