@@ -6,9 +6,8 @@ ugnode *copyUGList();
 pgnode *copyPGList();
 void countugAvg();
 void countpgAvg();
-ugnode *setUGClassList(ugnode *newUgHead);
-pgnode *setPGClassList(pgnode *newPgHead);
-void choseClassCourse();
+int choseClassCourse();
 void staGrade(int grade[], int score);
+void outputAllClasses();
 
 #endif

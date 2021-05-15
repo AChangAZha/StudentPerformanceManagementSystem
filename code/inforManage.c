@@ -399,7 +399,12 @@ int deleteData()
         printf("找不到该学生！\n");
 
     printf("\n请选择（1.继续删除学生 2.退出）： ");
-    enterNum(&item);
+    do
+    {
+        enterNum(&item);
+        if (item != 1 && item != 2)
+            printf("错误！请输入正确的数字：");
+    } while (item != 1 && item != 2);
     system("cls");
     return item;
 }

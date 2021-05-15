@@ -112,7 +112,9 @@ void inputScore()
                 } while (uPtr->data.cLanguguage < -1 || uPtr->data.cLanguguage > 100);
             }
             calculate();
-            printf("\n第%d位学生成绩录入结束\n", fi);
+            system("cls");
+            printf("第%d位学生成绩录入结束\n", fi);
+            outputUgScore(uPtr);
         }
 
         else if ((pPtr = serchPg(num)) != NULL) //输入的学生学号对应的是研究生
@@ -149,7 +151,9 @@ void inputScore()
                 } while (pPtr->data.thesis < -1 || pPtr->data.thesis > 100);
             }
             calculate();
-            printf("\n第%d位学生成绩录入结束\n", fi);
+            system("cls");
+            printf("第%d位学生成绩录入结束\n", fi);
+            outputPgScore(pPtr);
         }
         else
             printf("\n找不到该学生！\n"); //找不到对应学号的学生
@@ -347,7 +351,12 @@ void deleteScore()
                 calculate();
             }
             printf("请选择下一操作（1.继续删除 2.退出 ）：");
-            enterNum(&fi);
+            do
+            {
+                enterNum(&fi);
+                if (fi != 1 && fi != 2)
+                    printf("错误！请输入正确的数字：");
+            } while (fi != 1 && fi != 2);
         }
         else if ((q = serchPg(n)) != NULL)
         {
@@ -362,13 +371,23 @@ void deleteScore()
                 calculate();
             }
             printf("请选择下一操作（1.继续删除 2.退出 ）：");
-            enterNum(&fi);
+            do
+            {
+                enterNum(&fi);
+                if (fi != 1 && fi != 2)
+                    printf("错误！请输入正确的数字：");
+            } while (fi != 1 && fi != 2);
         }
         else
         {
             printf("\n找不到该学生！\n");
             printf("请选择下一操作（1.继续删除 2.退出 ）：");
-            enterNum(&fi);
+            do
+            {
+                enterNum(&fi);
+                if (fi != 1 && fi != 2)
+                    printf("错误！请输入正确的数字：");
+            } while (fi != 1 && fi != 2);
         }
         if (fi == 2)
         {

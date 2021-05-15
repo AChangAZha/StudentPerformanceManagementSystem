@@ -49,7 +49,7 @@ pgnode *setPClassList(char classTmp[]) //建立查找研究生班级链表
     return newPgHead;
 }
 
-void newlistDestroy(ugnode *newUgListHead, pgnode *newPgListHead) //销毁两条链表
+void newListDestroy(ugnode *newUgListHead, pgnode *newPgListHead) //销毁两条链表
 {
     ugnode *uTmp, *uPtr;
     pgnode *pTmp, *pPtr;

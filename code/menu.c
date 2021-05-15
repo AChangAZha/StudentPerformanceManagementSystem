@@ -242,7 +242,8 @@ int statisticsMenu()
             ;
         break;
     case 2:
-        choseClassCourse();
+        while ((choseClassCourse()) != 0)
+            ;
         break;
     }
     return item;
