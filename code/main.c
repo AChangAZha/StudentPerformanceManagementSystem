@@ -8,6 +8,7 @@
 #include "tool.h"
 #include "menu.h"
 #include "scoreManage.h"
+#include "sort.h"
 
 int main()
 {
@@ -101,10 +102,10 @@ int main()
                 ;
             break;
         case 2:
-            printf("待开发\n");
+            while ((sortMenu()) != 3)
+                ;
             break;
         case 3:
-            printf("待开发\n");
             break;
         case 4:
             while ((statisticsMenu()) != 3)

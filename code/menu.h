@@ -10,6 +10,7 @@ int dataManageMenu();
 int inforManageMenu();
 int addStuMenu();
 int scoreManageMenu();
+int sortMenu();
 int statisticsMenu();
 int choseStuCate();
 

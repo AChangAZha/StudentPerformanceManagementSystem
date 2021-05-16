@@ -4,6 +4,7 @@
 #include "tool.h"
 #include "inforManage.h"
 #include "scoreManage.h"
+#include "sort.h"
 #include "Statistics.h"
 
 void outputMainMenu()
@@ -213,6 +214,34 @@ int scoreManageMenu()
         break;
     case 4:
         scoreSearch();
+        break;
+    }
+    return item;
+}
+
+int sortMenu()
+{
+    int item = 0;
+    printf("----------------------------------------------\n");
+    printf("                    查看排名                   \n");
+    printf("    1---全校排名                               \n");
+    printf("    2---班级排名                               \n");
+    printf("    3---返回                                   \n");
+    printf("----------------------------------------------\n");
+    printf("\n请选择：");
+    do
+    {
+        enterNum(&item);
+        if (item < 1 || item > 3)
+            printf("错误！请输入正确的数字：");
+    } while (item < 1 || item > 3);
+    system("cls");
+    switch (item)
+    {
+    case 1:
+        scoreSort();
+        break;
+    case 2:
         break;
     }
     return item;
