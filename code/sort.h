@@ -2,6 +2,7 @@
 #define SORT_H
 
 void scoreSort();
+int classSort();
 void recoverUList();
 void recoverPList();
 ugnode *setUClassList(char classTmp[]);

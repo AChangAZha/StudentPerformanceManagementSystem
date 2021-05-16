@@ -132,8 +132,13 @@ void inforSearch() //查询学生基本信息
     {
         system("cls");
         //每个学号对应一个学生，不区分本科生和研究生
-        printf("请输入学号：");
+        printf("请输入学号（输入0可返回）：");
         enterNum(&num);
+        if (num == 0)
+        {
+            system("cls");
+            return;
+        }
         //需要在两个链表中搜寻
         //调用查找函数(在inquire.c中定义)
         if ((uPtr = serchUg(num)) != NULL)
@@ -170,8 +175,13 @@ void alterData() //修改学生基本信息
     int uflag = 0, pflag = 0, num, item, sex, opt;
     ugnode *uPtr = NULL;
     pgnode *pPtr = NULL;
-    printf("请输入要修改信息的学生的学号：");
+    printf("请输入要修改信息的学生的学号（输入0可返回）：");
     enterNum(&num);
+    if (num == 0)
+    {
+        system("cls");
+        return;
+    }
 
     if ((uPtr = serchUg(num)) != NULL)
         uflag = 1;
@@ -347,12 +357,16 @@ void alterData() //修改学生基本信息
 
 int deleteData()
 {
-    int uflag = 0, pflag = 0, num, item;
+    int uflag = 0, pflag = 0, num, item, opt;
     ugnode *uPtr = ugHead, *uTmp;
     pgnode *pPtr = pgHead, *pTmp;
-    printf("请输入要删除信息的学生的学号：");
+    printf("请输入要删除信息的学生的学号（输入0可返回）：");
     enterNum(&num);
-
+    if (num == 0)
+    {
+        system("cls");
+        return 2;
+    }
     while (uPtr->next != NULL)
     {
         if (uPtr->next->data.num == num)
@@ -379,26 +393,46 @@ int deleteData()
     {
         uTmp = uPtr->next;
         outputUgInfor(uTmp);
+        printf("\n请选择：1.确认删除 2.取消：");
+        do
+        {
+            enterNum(&opt);
+            if (opt != 1 && opt != 2)
+                printf("错误！请输入正确的数字：");
+        } while (opt != 1 && opt != 2);
+        system("cls");
+        if (opt == 2)
+            return 1;
         uPtr->next = uTmp->next;
         if (uTmp->next == NULL)
             ugTail = uPtr->next;
         free(uTmp);
-        printf("\n删除成功！\n");
+        printf("删除成功！\n");
     }
     else if (pflag == 1)
     {
         pTmp = pPtr->next;
         outputPgInfor(pTmp);
+        printf("\n请选择：1.确认删除 2.取消：");
+        do
+        {
+            enterNum(&opt);
+            if (opt != 1 && opt != 2)
+                printf("错误！请输入正确的数字：");
+        } while (opt != 1 && opt != 2);
+        system("cls");
+        if (opt == 2)
+            return 1;
         pPtr->next = pTmp->next;
         if (pTmp->next == NULL)
             pgTail = pPtr->next;
         free(pTmp);
-        printf("\n删除成功！\n");
+        printf("删除成功！\n");
     }
     else
         printf("找不到该学生！\n");
 
-    printf("\n请选择（1.继续删除学生 2.退出）： ");
+    printf("\n请选择（1.继续删除其他学生 2.退出）： ");
     do
     {
         enterNum(&item);

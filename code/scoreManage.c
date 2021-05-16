@@ -16,8 +16,13 @@ void scoreSearch() //查询学生成绩
     {
         system("cls");
         //每个学号对应一个学生，不区分本科生和研究生
-        printf("请输入学号：");
+        printf("请输入学号（输入0可返回）：");
         enterNum(&num);
+        if (num == 0)
+        {
+            system("cls");
+            return;
+        }
         //需要在两个链表中搜寻
         //调用查找函数(在inquire.c中定义)
         if ((uPtr = serchUg(num)) != NULL)
@@ -79,7 +84,7 @@ void inputScore()
             }
 
             fi++;
-            printf("\n正在录入第%d位学生的成绩（输入-1可取消录入）\n", fi);
+            printf("\n正在录入第%d位学生的成绩（输入-1可放弃录入该项成绩）\n", fi);
 
             if (uPtr->data.math == -1)
             {
@@ -166,8 +171,13 @@ void alterScore()
     int uflag = 0, pflag = 0, num, item, opt;
     ugnode *uPtr;
     pgnode *pPtr;
-    printf("请输入要修改信息的学生的学号：");
+    printf("请输入要修改信息的学生的学号（输入0可返回）：");
     enterNum(&num);
+    if (num == 0)
+    {
+        system("cls");
+        return;
+    }
 
     if ((uPtr = serchUg(num)) != NULL)
         uflag = 1;
@@ -335,8 +345,14 @@ void deleteScore()
     while (1)
     {
         system("cls");
-        printf("请输入要删除成绩的学生的学号：");
+        printf("请输入要删除成绩的学生的学号（输入0可返回）：");
         enterNum(&n);
+        if (n == 0)
+        {
+            system("cls");
+            return;
+        }
+
         if ((p = serchUg(n)) != NULL)
         {
             outputUgScore(p);
@@ -350,7 +366,7 @@ void deleteScore()
                 printf("\n删除成功！\n");
                 calculate();
             }
-            printf("请选择下一操作（1.继续删除 2.退出 ）：");
+            printf("请选择下一操作（1.继续删除其他学生成绩 2.退出 ）：");
             do
             {
                 enterNum(&fi);
@@ -370,7 +386,7 @@ void deleteScore()
                 printf("\n删除成功！\n");
                 calculate();
             }
-            printf("请选择下一操作（1.继续删除 2.退出 ）：");
+            printf("请选择下一操作（1.继续删除其他学生成绩 2.退出 ）：");
             do
             {
                 enterNum(&fi);
@@ -381,7 +397,7 @@ void deleteScore()
         else
         {
             printf("\n找不到该学生！\n");
-            printf("请选择下一操作（1.继续删除 2.退出 ）：");
+            printf("请选择下一操作（1.继续删除其他学生成绩 2.退出 ）：");
             do
             {
                 enterNum(&fi);

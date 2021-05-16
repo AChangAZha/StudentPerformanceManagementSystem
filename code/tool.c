@@ -93,6 +93,7 @@ void outputUgScore(ugnode *uPtr)
         printf("%-9d\n", uPtr->data.schoolRank);
     else
         printf("%-9s\n", "—");
+    printf("\n注：“—”表示暂无数据\n");
 }
 
 void outputPgScore(pgnode *pPtr)
@@ -119,6 +120,7 @@ void outputPgScore(pgnode *pPtr)
         printf("%-9d\n", pPtr->data.schoolRank);
     else
         printf("%-9s\n", "—");
+    printf("\n注：“—”表示暂无数据\n");
 }
 
 void printUList(ugnode *head) //输出本科班级链表信息
@@ -205,7 +207,7 @@ void about()
 {
     printf("----------------------------------------------------\n");
     printf("                  学生成绩管理系统                 \n");
-    printf("                 version 1.4.0 Alpha                  \n");
+    printf("                 version 1.4.1 Alpha                  \n");
     printf("                       2021/5                     \n");
     printf("                    东莞理工学院                   \n");
     printf("                  网络空间安全学院                 \n");

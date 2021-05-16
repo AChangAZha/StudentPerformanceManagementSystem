@@ -4,18 +4,19 @@
 #include <stdio.h>
 #include <string.h>
 #include "tool.h"
+#include "statistics.h"
 
 void scoreSort()
 {
-    ugnode *uSortPre = NULL, *uTmp = NULL, *uOri = NULL, *uSortCur = NULL;
-    pgnode *pSortCur = NULL, *pTmp = NULL, *pOri = NULL, *pSortPre = NULL;
+    ugnode *uSortCur = NULL, *uSortPre = NULL, *uOri = NULL, *uTmp = NULL;
+    pgnode *pSortCur = NULL, *pSortPre = NULL, *pOri = NULL, *pTmp = NULL;
     int uflag, pflag, item;
 
     while (1)
     {
         system("cls");
         printf("-----------------------------------------------------\n");
-        printf("   1.查看本科生排名结果      2.查看研究生排名结果    \n");
+        printf("   1.查看本科生排名结果       2.查看研究生排名结果      \n");
         printf("                       3.退出                        \n");
         printf("-----------------------------------------------------\n");
         printf("请输入菜单编号：");
@@ -64,8 +65,9 @@ void scoreSort()
                 }
                 uOri = uTmp;
             }
-            printf("排序后的全部本科生信息：\n\n");
+            printf("本科生全校排名：\n\n");
             printUList(ugHead);
+            printf("\n注：“—”表示暂无数据\n");
             recoverUList();
             break;
         }
@@ -104,8 +106,9 @@ void scoreSort()
                 }
                 pOri = pTmp;
             }
-            printf("排序后的全部研究生信息：\n\n");
+            printf("研究生全校排名：\n\n");
             printPList(pgHead);
+            printf("\n注：“—”表示暂无数据\n");
             recoverPList();
             break;
         }
@@ -114,6 +117,102 @@ void scoreSort()
         }
         system("pause");
     }
+}
+
+int classSort()
+{
+    ugnode *uSortCur = NULL, *uSortPre = NULL, *uOri = NULL, *uTmp = NULL, *ugClass = NULL;
+    pgnode *pSortCur = NULL, *pSortPre = NULL, *pOri = NULL, *pTmp = NULL, *pgClass = NULL;
+    int uflag, pflag;
+    char classTmp[20];
+
+    system("cls");
+    outputAllClasses();
+    printf("\n请输入需要排序并显示学生信息的班级（输入0可退出）：");
+    enterStr(classTmp, sizeof(classTmp));
+    if (strcmp(classTmp, "0") == 0)
+    {
+        system("cls");
+        return 0;
+    }
+
+    ugClass = setUClassList(classTmp);
+    pgClass = setPClassList(classTmp);
+
+    if (ugClass->next != NULL) //若条件成立，则输入的班级为本科生班级
+    {                          //对链表进行就地排序，按总成绩从高到低进行排序
+        system("cls");
+        uOri = ugClass->next->next;
+        ugClass->next->next = NULL;
+        while (uOri != NULL)
+        {
+            uSortPre = ugClass;
+            uSortCur = uSortPre->next;
+            uTmp = uOri->next;
+            while (uSortCur != NULL)
+            {
+                uflag = 0;
+                if (uSortCur->data.totalScore < uOri->data.totalScore)
+                {
+                    uOri->next = uSortCur;
+                    uSortPre->next = uOri;
+                    uflag++;
+                    break;
+                }
+                uSortPre = uSortCur;
+                uSortCur = uSortCur->next;
+            }
+            if (uflag == 0)
+            {
+                uSortPre->next = uOri;
+                uOri->next = NULL;
+            }
+            uOri = uTmp;
+        }
+        printf("%s学生班级排名：\n\n", classTmp);
+        printUList(ugClass);
+        printf("\n注：“—”表示暂无数据\n");
+    }
+    else if (pgClass->next != NULL) //若条件成立，则输入的班级为研究生班级
+    {                               //对链表进行就地排序，按总成绩从高到低进行排序
+        system("cls");
+        pOri = pgClass->next->next;
+        pgClass->next->next = NULL;
+        while (pOri != NULL)
+        {
+            pSortPre = pgClass;
+            pSortCur = pSortPre->next;
+            pTmp = pOri->next;
+
+            while (pSortCur != NULL)
+            {
+                pflag = 0;
+                if (pSortCur->data.totalScore < pOri->data.totalScore)
+                {
+                    pOri->next = pSortCur;
+                    pSortPre->next = pOri;
+                    pflag++;
+                    break;
+                }
+                pSortPre = pSortCur;
+                pSortCur = pSortCur->next;
+            }
+            if (pflag == 0)
+            {
+                pSortPre->next = pOri;
+                pOri->next = NULL;
+            }
+            pOri = pTmp;
+        }
+        printf("%s学生班级排名：\n\n", classTmp);
+        printPList(pgClass);
+        printf("\n注：“—”表示暂无数据\n");
+    }
+    else
+        printf("\n该班级不存在！\n");
+    newListDestroy(ugClass, pgClass); //结束后销毁新链表
+    system("pause");
+    return 1;
 }
 
 void recoverUList()

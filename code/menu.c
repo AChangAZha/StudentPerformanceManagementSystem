@@ -242,6 +242,8 @@ int sortMenu()
         scoreSort();
         break;
     case 2:
+        while ((classSort()) != 0)
+            ;
         break;
     }
     return item;
