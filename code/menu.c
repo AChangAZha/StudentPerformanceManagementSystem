@@ -300,10 +300,10 @@ int choseStuCate()
     switch (item)
     {
     case 1:
-        countugAvg();
+        countUgAvgMenu();
         break;
     case 2:
-        countpgAvg();
+        countPgAvgMenu();
         break;
     }
     return item;

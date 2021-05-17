@@ -45,7 +45,7 @@ void enterStr(char *str, int num) //输入字符串
 
 void outputUgInfor(ugnode *uPtr)
 {
-    printf("%-10s%-8s%-12s%-6s%-20s%-20s\n", "培养层次", "学号", "姓名", "性别", "专业", "班级");
+    // printf("%-10s%-8s%-12s%-6s%-20s%-20s\n", "培养层次", "学号", "姓名", "性别", "专业", "班级");
     printf("%-10s%-8d%-12s", "本科", uPtr->data.num, uPtr->data.name);
     if (uPtr->data.sex == male)
         printf("%-6s", "男");

@@ -45,12 +45,10 @@ pgnode *copyPGList()
     return copy;
 }
 
-void countugAvg()
+void countUgAvgMenu()
 {
-    int sum, count, item;
-    double avg;
-    ugnode *p, *newUgHead, *tmp;
-    char cla[20];
+    int item;
+    ugnode *newUgHead;
     while (1)
     {
         system("cls");
@@ -73,36 +71,8 @@ void countugAvg()
             printf("各班高数平均成绩：\n\n");
             if (newUgHead->next == NULL)
                 printf("暂无数据\n");
-            while (newUgHead->next != NULL)
-            {
-                sum = 0;
-                count = 0;
-                p = newUgHead;
-                strcpy(cla, p->next->data.classes);
-                while (p->next != NULL)
-                {
-                    tmp = p->next;
-                    if ((strcmp(tmp->data.classes, cla)) == 0)
-                    {
-                        if (tmp->data.math != -1)
-                        {
-                            sum += tmp->data.math;
-                            count++;
-                        }
-                        p->next = tmp->next;
-                        free(tmp);
-                    }
-                    else
-                        p = p->next;
-                }
-                if (count != 0)
-                {
-                    avg = sum * 1.0 / count;
-                    printf("%s：%.2lf\n", cla, avg);
-                }
-                else
-                    printf("%s：暂无数据\n", cla, avg);
-            }
+            else
+                countUgAvg(newUgHead, item);
             free(newUgHead);
         }
         else if (item == 2)
@@ -110,36 +80,8 @@ void countugAvg()
             printf("各班英语平均成绩：\n\n");
             if (newUgHead->next == NULL)
                 printf("暂无数据\n");
-            while (newUgHead->next != NULL)
-            {
-                sum = 0;
-                count = 0;
-                p = newUgHead;
-                strcpy(cla, p->next->data.classes);
-                while (p->next != NULL)
-                {
-                    tmp = p->next;
-                    if ((strcmp(tmp->data.classes, cla)) == 0)
-                    {
-                        if (tmp->data.english != -1)
-                        {
-                            sum += tmp->data.english;
-                            count++;
-                        }
-                        p->next = tmp->next;
-                        free(tmp);
-                    }
-                    else
-                        p = p->next;
-                }
-                if (count != 0)
-                {
-                    avg = sum * 1.0 / count;
-                    printf("%s：%.2lf\n", cla, avg);
-                }
-                else
-                    printf("%s：暂无数据\n", cla, avg);
-            }
+            else
+                countUgAvg(newUgHead, item);
             free(newUgHead);
         }
         else if (item == 3)
@@ -147,36 +89,8 @@ void countugAvg()
             printf("各班C语言平均成绩：\n\n");
             if (newUgHead->next == NULL)
                 printf("暂无数据\n");
-            while (newUgHead->next != NULL)
-            {
-                sum = 0;
-                count = 0;
-                p = newUgHead;
-                strcpy(cla, p->next->data.classes);
-                while (p->next != NULL)
-                {
-                    tmp = p->next;
-                    if ((strcmp(tmp->data.classes, cla)) == 0)
-                    {
-                        if (tmp->data.cLanguguage != -1)
-                        {
-                            sum += tmp->data.cLanguguage;
-                            count++;
-                        }
-                        p->next = tmp->next;
-                        free(tmp);
-                    }
-                    else
-                        p = p->next;
-                }
-                if (count != 0)
-                {
-                    avg = sum * 1.0 / count;
-                    printf("%s：%.2lf\n", cla, avg);
-                }
-                else
-                    printf("%s：暂无数据\n", cla, avg);
-            }
+            else
+                countUgAvg(newUgHead, item);
             free(newUgHead);
         }
         else
@@ -189,13 +103,10 @@ void countugAvg()
     }
 }
 
-void countpgAvg()
+void countPgAvgMenu()
 {
-    int sum, count, item;
-    double avg;
-    pgnode *p, *newPgHead, *tmp;
-    char cla[20];
-
+    int item;
+    pgnode *newPgHead;
     while (1)
     {
         system("cls");
@@ -218,36 +129,8 @@ void countpgAvg()
             printf("各班课程综合平均成绩：\n\n");
             if (newPgHead->next == NULL)
                 printf("暂无数据\n");
-            while (newPgHead->next != NULL)
-            {
-                sum = 0;
-                count = 0;
-                p = newPgHead;
-                strcpy(cla, p->next->data.classes);
-                while (p->next != NULL)
-                {
-                    tmp = p->next;
-                    if ((strcmp(tmp->data.classes, cla)) == 0)
-                    {
-                        if (tmp->data.compCourse != -1)
-                        {
-                            sum += tmp->data.compCourse;
-                            count++;
-                        }
-                        p->next = tmp->next;
-                        free(tmp);
-                    }
-                    else
-                        p = p->next;
-                }
-                if (count != 0)
-                {
-                    avg = sum * 1.0 / count;
-                    printf("%s：%.2lf\n", cla, avg);
-                }
-                else
-                    printf("%s：暂无数据\n", cla, avg);
-            }
+            else
+                countPgAvg(newPgHead, item);
             free(newPgHead);
         }
         else if (item == 2)
@@ -255,36 +138,8 @@ void countpgAvg()
             printf("各班论文平均成绩：\n\n");
             if (newPgHead->next == NULL)
                 printf("暂无数据\n");
-            while (newPgHead->next != NULL)
-            {
-                sum = 0;
-                count = 0;
-                p = newPgHead;
-                strcpy(cla, p->next->data.classes);
-                while (p->next != NULL)
-                {
-                    tmp = p->next;
-                    if ((strcmp(tmp->data.classes, cla)) == 0)
-                    {
-                        if (tmp->data.thesis != -1)
-                        {
-                            sum += tmp->data.thesis;
-                            count++;
-                        }
-                        p->next = tmp->next;
-                        free(tmp);
-                    }
-                    else
-                        p = p->next;
-                }
-                if (count != 0)
-                {
-                    avg = sum * 1.0 / count;
-                    printf("%s：%.2lf\n", cla, avg);
-                }
-                else
-                    printf("%s：暂无数据\n", cla, avg);
-            }
+            else
+                countPgAvg(newPgHead, item);
             free(newPgHead);
         }
         else
@@ -294,6 +149,112 @@ void countpgAvg()
         }
         printf("\n");
         system("pause");
+    }
+}
+
+void countUgAvg(ugnode *newUgHead, int item)
+{
+    int sum, count;
+    double avg;
+    char cla[20];
+    ugnode *p, *tmp;
+    while (newUgHead->next != NULL) //每次都从头开始找相同班级的学生，直到链表为空
+    {
+        sum = 0;
+        count = 0;
+        p = newUgHead;
+        strcpy(cla, p->next->data.classes); //将第一个学生所在班级作为第一个班级
+        while (p->next != NULL)             //寻找与第一个学生的班级相同的学生
+        {
+            tmp = p->next;
+            if ((strcmp(tmp->data.classes, cla)) == 0) //若班级相同，删除该节点
+            {
+                if (item == 1)
+                {
+                    if (tmp->data.math != -1) //计算相同班级学生的成绩
+                    {
+                        sum += tmp->data.math;
+                        count++;
+                    }
+                }
+                else if (item == 2)
+                {
+                    if (tmp->data.english != -1) //计算相同班级学生的成绩
+                    {
+                        sum += tmp->data.english;
+                        count++;
+                    }
+                }
+                else if (item == 3)
+                {
+                    if (tmp->data.cLanguguage != -1) //计算相同班级学生的成绩
+                    {
+                        sum += tmp->data.cLanguguage;
+                        count++;
+                    }
+                }
+                p->next = tmp->next;
+                free(tmp); //销毁该节点
+            }
+            else
+                p = p->next;
+        }
+        if (count != 0) //0不能作余数
+        {
+            avg = sum * 1.0 / count;
+            printf("%s：%.2lf\n", cla, avg);
+        }
+        else
+            printf("%s：暂无数据\n", cla, avg);
+    }
+}
+
+void countPgAvg(pgnode *newPgHead, int item)
+{
+    int sum, count;
+    double avg;
+    char cla[20];
+    pgnode *p, *tmp;
+    while (newPgHead->next != NULL)
+    {
+        sum = 0;
+        count = 0;
+        p = newPgHead;
+        strcpy(cla, p->next->data.classes);
+        while (p->next != NULL)
+        {
+            tmp = p->next;
+            if ((strcmp(tmp->data.classes, cla)) == 0)
+            {
+                if (item == 1)
+                {
+                    if (tmp->data.compCourse != -1)
+                    {
+                        sum += tmp->data.compCourse;
+                        count++;
+                    }
+                }
+                else if (item == 2)
+                {
+                    if (tmp->data.thesis != -1)
+                    {
+                        sum += tmp->data.thesis;
+                        count++;
+                    }
+                }
+                p->next = tmp->next;
+                free(tmp);
+            }
+            else
+                p = p->next;
+        }
+        if (count != 0)
+        {
+            avg = sum * 1.0 / count;
+            printf("%s：%.2lf\n", cla, avg);
+        }
+        else
+            printf("%s：暂无数据\n", cla, avg);
     }
 }
 

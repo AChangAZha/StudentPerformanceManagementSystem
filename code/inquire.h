@@ -3,5 +3,6 @@
 
 ugnode *serchUg(int num);
 pgnode *serchPg(int num);
+void showAllUg();
 
 #endif
