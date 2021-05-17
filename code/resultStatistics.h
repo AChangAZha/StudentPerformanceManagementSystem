@@ -10,6 +10,5 @@ void countUgAvg(ugnode *newUgHead, int item);
 void countPgAvg(pgnode *newPgHead, int item);
 int choseClassCourse();
 void staGrade(int grade[], int score);
-void outputAllClasses();
 
 #endif

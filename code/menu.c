@@ -4,8 +4,9 @@
 #include "tool.h"
 #include "inforManage.h"
 #include "scoreManage.h"
-#include "sort.h"
-#include "Statistics.h"
+#include "resultSort.h"
+#include "resultStatistics.h"
+#include "inquire.h"
 
 void outputMainMenu()
 {
@@ -244,6 +245,71 @@ int sortMenu()
     case 2:
         while ((classSort()) != 0)
             ;
+        break;
+    }
+    return item;
+}
+
+int inquireMenu()
+{
+    int item = 0;
+    printf("----------------------------------------------\n");
+    printf("                  查询学生信息                 \n");
+    printf("  1---查看全校学生信息                          \n");
+    printf("  2---根据班级查询学生信息                      \n");
+    printf("  3---根据学号或姓名查询学生信息                 \n");
+    printf("  4---查询课程成绩不及格学生信息                 \n");
+    printf("  5---返回                                     \n");
+    printf("----------------------------------------------\n");
+    printf("\n请选择：");
+    do
+    {
+        enterNum(&item);
+        if (item < 1 || item > 5)
+            printf("错误！请输入正确的数字：");
+    } while (item < 1 || item > 5);
+    system("cls");
+    switch (item)
+    {
+    case 1:
+        while ((outputAllStuMenu()) != 3)
+            ;
+        break;
+    case 2:
+        stuClaInfor();
+        break;
+    case 3:
+        findInfor();
+        break;
+    case 4:
+        failStu();
+        break;
+    }
+    return item;
+}
+
+int outputAllStuMenu()
+{
+    int item = 0;
+    printf("-----------------------------------------------------\n");
+    printf("   1.查看本科生学生信息       2.查看研究生学生信息      \n");
+    printf("                       3.退出                        \n");
+    printf("-----------------------------------------------------\n");
+    printf("请输入菜单编号：");
+    do
+    {
+        enterNum(&item);
+        if (item < 1 || item > 3)
+            printf("错误！请输入正确的数字：");
+    } while (item < 1 || item > 3);
+    system("cls");
+    switch (item)
+    {
+    case 1:
+        showAllUg();
+        break;
+    case 2:
+        showAllPg();
         break;
     }
     return item;

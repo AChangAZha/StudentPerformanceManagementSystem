@@ -11,6 +11,8 @@ int inforManageMenu();
 int addStuMenu();
 int scoreManageMenu();
 int sortMenu();
+int inquireMenu();
+int outputAllStuMenu();
 int statisticsMenu();
 int choseStuCate();
 

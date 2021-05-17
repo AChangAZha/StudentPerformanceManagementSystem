@@ -8,8 +8,18 @@ void outputUgInfor(ugnode *pPtr);
 void outputPgInfor(pgnode *pPtr);
 void outputUgScore(ugnode *uPtr);
 void outputPgScore(pgnode *pPtr);
-void printUList(ugnode *head);
-void printPList(pgnode *head);
+void printUList(ugnode *head, ugnode *end);
+void printPList(pgnode *head, pgnode *end);
+void printUHead();
+void printPHead();
+void printOneUg(ugnode *p);
+void printOnePg(pgnode *q);
+ugnode *copyUGList();
+pgnode *copyPGList();
+ugnode *setUClassList(char classTmp[]);
+pgnode *setPClassList(char classTmp[]);
+void newListDestroy(ugnode *newUgListHead, pgnode *newPgListHead);
+void outputAllClasses();
 void about();
 
 #endif

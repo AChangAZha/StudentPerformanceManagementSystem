@@ -169,8 +169,8 @@ void inputScore()
 void alterScore()
 {
     int uflag = 0, pflag = 0, num, item, opt;
-    ugnode *uPtr;
-    pgnode *pPtr;
+    ugnode *uPtr = NULL;
+    pgnode *pPtr = NULL;
     printf("请输入要修改信息的学生的学号（输入0可返回）：");
     enterNum(&num);
     if (num == 0)

@@ -2,13 +2,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "model.h"
-#include "inquire.h"
 #include "fileOperate.h"
-#include "inforManage.h"
 #include "tool.h"
 #include "menu.h"
 #include "scoreManage.h"
-#include "sort.h"
 
 int main()
 {
@@ -82,7 +79,7 @@ int main()
     system("pause");
     system("cls");
     /**************************************************************/
-    showAllUg();
+
     /*************************************************************/
     while (1)
     {
@@ -106,6 +103,8 @@ int main()
                 ;
             break;
         case 3:
+            while ((inquireMenu()) != 5)
+                ;
             break;
         case 4:
             while ((statisticsMenu()) != 3)

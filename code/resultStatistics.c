@@ -1,49 +1,9 @@
 #include "model.h"
-#include "Statistics.h"
+#include "resultStatistics.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "tool.h"
-
-ugnode *copyUGList()
-{
-    ugnode *copy, *p, *node, *q;
-    copy = (ugnode *)malloc(sizeof(ugnode));
-    copy->next = NULL;
-    q = copy;
-    p = ugHead->next;
-
-    while (p != NULL)
-    {
-        node = (ugnode *)malloc(sizeof(ugnode));
-        node->data = p->data;
-        node->next = NULL;
-        q->next = node;
-        p = p->next;
-        q = node;
-    }
-    return copy;
-}
-
-pgnode *copyPGList()
-{
-    pgnode *copy, *p, *node, *q;
-    copy = (pgnode *)malloc(sizeof(pgnode));
-    copy->next = NULL;
-    q = copy;
-    p = pgHead->next;
-
-    while (p != NULL)
-    {
-        node = (pgnode *)malloc(sizeof(pgnode));
-        node->data = p->data;
-        node->next = NULL;
-        q->next = node;
-        p = p->next;
-        q = node;
-    }
-    return copy;
-}
 
 void countUgAvgMenu()
 {
@@ -205,7 +165,7 @@ void countUgAvg(ugnode *newUgHead, int item)
             printf("%s：%.2lf\n", cla, avg);
         }
         else
-            printf("%s：暂无数据\n", cla, avg);
+            printf("%s：暂无数据\n", cla);
     }
 }
 
@@ -254,7 +214,7 @@ void countPgAvg(pgnode *newPgHead, int item)
             printf("%s：%.2lf\n", cla, avg);
         }
         else
-            printf("%s：暂无数据\n", cla, avg);
+            printf("%s：暂无数据\n", cla);
     }
 }
 
@@ -262,7 +222,7 @@ int choseClassCourse()
 {
     char cla[20], course[20];
     int mathGrade[5] = {0}, enGrade[5] = {0}, cGrade[5] = {0}, compGrade[5] = {0}, thGrade[5] = {0};
-    int tmp[5], item, i, uflag = 0, pflag = 0;
+    int tmp[5] = {0}, item, i, uflag = 0, pflag = 0;
     ugnode *uPtr = ugHead->next;
     pgnode *pPtr = pgHead->next;
 
@@ -425,56 +385,4 @@ void staGrade(int grade[], int score)
         else
             grade[4]++;
     }
-}
-
-void outputAllClasses()
-{
-    char cla[20];
-    ugnode *newUgHead, *p, *uTmp;
-    pgnode *newPgHead, *q, *pTmp;
-    newUgHead = copyUGList();
-    newPgHead = copyPGList();
-    printf("本科班级:\n\n");
-    if (newUgHead->next == NULL)
-        printf("暂无数据\n");
-    while (newUgHead->next != NULL)
-    {
-
-        p = newUgHead;
-        strcpy(cla, p->next->data.classes);
-        while (p->next != NULL)
-        {
-            uTmp = p->next;
-            if ((strcmp(uTmp->data.classes, cla)) == 0)
-            {
-                p->next = uTmp->next;
-                free(uTmp);
-            }
-            else
-                p = p->next;
-        }
-        printf("%s\n", cla);
-    }
-    free(newUgHead);
-    printf("\n研究生班级:\n\n");
-    if (newPgHead->next == NULL)
-        printf("暂无数据\n");
-    while (newPgHead->next != NULL)
-    {
-        q = newPgHead;
-        strcpy(cla, q->next->data.classes);
-        while (q->next != NULL)
-        {
-            pTmp = q->next;
-            if ((strcmp(pTmp->data.classes, cla)) == 0)
-            {
-                q->next = pTmp->next;
-                free(pTmp);
-            }
-            else
-                q = q->next;
-        }
-        printf("%s\n", cla);
-    }
-    free(newPgHead);
 }
