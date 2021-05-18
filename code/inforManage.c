@@ -355,7 +355,7 @@ void alterData() //修改学生基本信息
     }
 }
 
-int deleteData()
+int deleteData() //删除学生
 {
     int uflag = 0, pflag = 0, num, item, opt;
     ugnode *uPtr = ugHead, *uTmp;

@@ -1,5 +1,5 @@
-#ifndef SORT_H
-#define SORT_H
+#ifndef RESULTSORT_H
+#define RESULTSORT_H
 
 void scoreSort();
 int classSort();

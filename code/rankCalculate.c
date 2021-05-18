@@ -3,11 +3,11 @@
 #include <string.h>
 #include "model.h"
 
-void schoolRankCalculate()
+void schoolRankCalculate() //计算校级排名
 {
     ugnode *uPtr = ugHead->next, *uCmp;
     pgnode *pPtr = pgHead->next, *pCmp;
-    while (uPtr != NULL) //计算本科生总成绩
+    while (uPtr != NULL)
     {
         if (uPtr->data.totalScore != -1)
         {
@@ -24,7 +24,7 @@ void schoolRankCalculate()
             uPtr->data.schoolRank = -1;
         uPtr = uPtr->next;
     }
-    while (pPtr != NULL) //计算研究生总成绩
+    while (pPtr != NULL)
     {
         if (pPtr->data.totalScore != -1)
         {
@@ -43,11 +43,11 @@ void schoolRankCalculate()
     }
 }
 
-void classRankCalculate()
+void classRankCalculate() //计算班级排名
 {
     ugnode *uPtr = ugHead->next, *uCmp;
     pgnode *pPtr = pgHead->next, *pCmp;
-    while (uPtr != NULL) //计算本科生总成绩
+    while (uPtr != NULL)
     {
         if (uPtr->data.totalScore != -1)
         {

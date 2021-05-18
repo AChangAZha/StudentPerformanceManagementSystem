@@ -358,29 +358,6 @@ int saveToPgdat(FILE *pgFile) //将研究生数据保存到dat文件
     return count;
 }
 
-void listDestroy() //销毁两条链表
-{
-    ugnode *uTmp, *uPtr;
-    pgnode *pTmp, *pPtr;
-    uPtr = ugHead;
-    pPtr = pgHead;
-
-    while (uPtr != NULL)
-    {
-        uTmp = uPtr;
-        uPtr = uPtr->next;
-        free(uTmp);
-    }
-    while (pPtr != NULL)
-    {
-        pTmp = pPtr;
-        pPtr = pPtr->next;
-        free(pTmp);
-    }
-    ugHead = NULL;
-    pgHead = NULL;
-}
-
 int saveToFile() //另存为
 {
     int stuType, fileType, pathLen, nameLen, i, j;

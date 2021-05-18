@@ -30,9 +30,9 @@ void enterStr(char *str, int num) //输入字符串
                 break;
             i++;
         }
-        if (tmp[i] != '\n')
+        if (tmp[i] != '\n') //判断字数是否超过限制
         {
-            while (getchar() != '\n')
+            while (getchar() != '\n') //清空缓存区
                 ;
             printf("字数超过限制，请重新输入：");
         }
@@ -43,7 +43,7 @@ void enterStr(char *str, int num) //输入字符串
     strcpy(str, tmp);
 }
 
-void outputUgInfor(ugnode *uPtr)
+void outputUgInfor(ugnode *uPtr) //输出本科生基本资料
 {
     printf("%-10s%-8s%-12s%-6s%-20s%-20s\n", "培养层次", "学号", "姓名", "性别", "专业", "班级");
     printf("%-10s%-8d%-12s", "本科", uPtr->data.num, uPtr->data.name);
@@ -54,7 +54,7 @@ void outputUgInfor(ugnode *uPtr)
     printf("%-20s%-20s\n", uPtr->data.speciaty, uPtr->data.classes);
 }
 
-void outputPgInfor(pgnode *pPtr)
+void outputPgInfor(pgnode *pPtr) //输出研究生基本资料
 {
     printf("%-10s%-8s%-12s%-6s%-20s%-20s%-20s%-12s\n", "培养层次", "学号", "姓名", "性别", "专业", "班级", "研究方向", "导师");
     printf("%-10s%-8d%-12s", "研究生", pPtr->data.num, pPtr->data.name);
@@ -65,7 +65,7 @@ void outputPgInfor(pgnode *pPtr)
     printf("%-20s%-20s%-20s%-12s\n", pPtr->data.speciaty, pPtr->data.classes, pPtr->data.rschFields, pPtr->data.advisor);
 }
 
-void outputUgScore(ugnode *uPtr)
+void outputUgScore(ugnode *uPtr) //输出本科生成绩
 {
     printf("%-9s%-8s%-12s%-20s%-20s%-5s%-5s%-6s%-7s%-9s%-9s\n", "培养层次", "学号", "姓名", "专业", "班级", "高数", "英语", "C语言", "总成绩", "班级排名", "校级排名");
     printf("%-9s%-8d%-12s%-20s%-20s", "本科", uPtr->data.num, uPtr->data.name, uPtr->data.speciaty, uPtr->data.classes);
@@ -96,7 +96,7 @@ void outputUgScore(ugnode *uPtr)
     printf("\n注：“—”表示暂无数据\n");
 }
 
-void outputPgScore(pgnode *pPtr)
+void outputPgScore(pgnode *pPtr) //输出研究生成绩
 {
     printf("%-9s%-8s%-12s%-20s%-20s%-9s%-5s%-7s%-9s%-9s\n", "培养层次", "学号", "姓名", "专业", "班级", "课程综合", "论文", "总成绩", "班级排名", "校级排名");
     printf("%-9s%-8d%-12s%-20s%-20s", "研究生", pPtr->data.num, pPtr->data.name, pPtr->data.speciaty, pPtr->data.classes);
@@ -199,17 +199,17 @@ void printPList(pgnode *head, pgnode *end) //输出研究生班级链表信息
     }
 }
 
-void printUHead()
+void printUHead() //输出表头
 {
     printf("%-9s%-8s%-12s%-6s%-20s%-20s%-5s%-5s%-6s%-7s%-9s%-9s\n", "培养层次", "学号", "姓名", "性别", "专业", "班级", "高数", "英语", "C语言", "总成绩", "班级排名", "校级排名");
 }
 
-void printPHead()
+void printPHead() //输出表头
 {
     printf("%-9s%-8s%-12s%-6s%-20s%-20s%-20s%-12s%-9s%-5s%-7s%-9s%-9s\n", "培养层次", "学号", "姓名", "性别", "专业", "班级", "研究方向", "导师", "课程综合", "论文", "总成绩", "班级排名", "校级排名");
 }
 
-void printOneUg(ugnode *p)
+void printOneUg(ugnode *p) //输出本科生信息
 {
     if (p != NULL)
     {
@@ -246,7 +246,7 @@ void printOneUg(ugnode *p)
     }
 }
 
-void printOnePg(pgnode *q)
+void printOnePg(pgnode *q) //输出研究生信息
 {
     if (q != NULL)
     {
@@ -280,7 +280,7 @@ void printOnePg(pgnode *q)
     }
 }
 
-ugnode *copyUGList()
+ugnode *copyUGList() //复制本科生链表
 {
     ugnode *copy, *p, *node, *q;
     copy = (ugnode *)malloc(sizeof(ugnode));
@@ -300,7 +300,7 @@ ugnode *copyUGList()
     return copy;
 }
 
-pgnode *copyPGList()
+pgnode *copyPGList() //输出研究生链表
 {
     pgnode *copy, *p, *node, *q;
     copy = (pgnode *)malloc(sizeof(pgnode));
@@ -366,12 +366,12 @@ pgnode *setPClassList(char classTmp[]) //建立查找研究生班级链表
     return newPgHead;
 }
 
-void newListDestroy(ugnode *newUgListHead, pgnode *newPgListHead) //销毁两条链表
+void listDestroy(ugnode **u, pgnode **p) //销毁两条链表
 {
     ugnode *uTmp, *uPtr;
     pgnode *pTmp, *pPtr;
-    uPtr = newUgListHead;
-    pPtr = newPgListHead;
+    uPtr = *u;
+    pPtr = *p;
 
     while (uPtr != NULL)
     {
@@ -385,9 +385,11 @@ void newListDestroy(ugnode *newUgListHead, pgnode *newPgListHead) //销毁两条
         pPtr = pPtr->next;
         free(pTmp);
     }
+    *u = NULL;
+    *p = NULL;
 }
 
-void outputAllClasses()
+void outputAllClasses() //输出所有班级
 {
     char cla[20];
     ugnode *newUgHead, *p, *uTmp;
@@ -439,11 +441,11 @@ void outputAllClasses()
     free(newPgHead);
 }
 
-void about()
+void about() //关于
 {
     printf("----------------------------------------------------\n");
     printf("                  学生成绩管理系统                 \n");
-    printf("                  version 1.5.0 Beta                  \n");
+    printf("               version 1.5.1 Release              \n");
     printf("                       2021/5                     \n");
     printf("                    东莞理工学院                   \n");
     printf("                  网络空间安全学院                 \n");

@@ -18,7 +18,7 @@ ugnode *copyUGList();
 pgnode *copyPGList();
 ugnode *setUClassList(char classTmp[]);
 pgnode *setPClassList(char classTmp[]);
-void newListDestroy(ugnode *newUgListHead, pgnode *newPgListHead);
+void listDestroy(ugnode **u, pgnode **p);
 void outputAllClasses();
 void about();
 

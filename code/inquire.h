@@ -12,4 +12,5 @@ int serchPgName(char nameTemp[]);
 void failStu();
 void unFailStu(ugnode *p);
 void pnFailStu(pgnode *q);
+
 #endif

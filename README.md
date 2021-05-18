@@ -1,1 +1,1 @@
-﻿This is the source code of the student management system.
+﻿This is the source code of the Student Performance Management System.

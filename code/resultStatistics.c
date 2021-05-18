@@ -5,7 +5,7 @@
 #include <string.h>
 #include "tool.h"
 
-void countUgAvgMenu()
+void countUgAvgMenu() //统计各班平均分菜单
 {
     int item;
     ugnode *newUgHead;
@@ -63,7 +63,7 @@ void countUgAvgMenu()
     }
 }
 
-void countPgAvgMenu()
+void countPgAvgMenu() //统计各班平均分菜单
 {
     int item;
     pgnode *newPgHead;
@@ -112,7 +112,7 @@ void countPgAvgMenu()
     }
 }
 
-void countUgAvg(ugnode *newUgHead, int item)
+void countUgAvg(ugnode *newUgHead, int item) //统计各班平均分
 {
     int sum, count;
     double avg;
@@ -169,7 +169,7 @@ void countUgAvg(ugnode *newUgHead, int item)
     }
 }
 
-void countPgAvg(pgnode *newPgHead, int item)
+void countPgAvg(pgnode *newPgHead, int item) //统计各班平均分
 {
     int sum, count;
     double avg;
@@ -218,7 +218,7 @@ void countPgAvg(pgnode *newPgHead, int item)
     }
 }
 
-int choseClassCourse()
+int choseClassCourse() //查看各班课程各等级人数
 {
     char cla[20], course[20];
     int mathGrade[5] = {0}, enGrade[5] = {0}, cGrade[5] = {0}, compGrade[5] = {0}, thGrade[5] = {0};
@@ -314,7 +314,7 @@ int choseClassCourse()
             system("pause");
         }
     }
-    else if (pflag == 1) //输入班级为研究生班级
+    else if (pflag == 1)
     {
 
         while (1)
@@ -369,9 +369,8 @@ int choseClassCourse()
     return 1;
 }
 
-void staGrade(int grade[], int score)
+void staGrade(int grade[], int score) //统计各等级人数
 {
-
     if (score != -1)
     {
         if (score >= 90)

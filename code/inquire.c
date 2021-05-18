@@ -30,10 +30,10 @@ pgnode *serchPg(int num) //在研究生链表中搜索
     return NULL;
 }
 
-void showAllUg()
+void showAllUg() //分页输出所有本科生信息
 {
     int count = 0, cur = 0, end = 0, opt = 0;
-    ugnode **page = NULL;
+    ugnode **page = NULL; //指针数组：保存每一页第一个学生的指针
     ugnode *uPtr = ugHead->next;
     if (uPtr == NULL)
     {
@@ -44,21 +44,21 @@ void showAllUg()
     }
     while (uPtr != NULL)
     {
-        count++;
+        count++; //计数器+1
         if (count > 10)
         {
             cur++;
-            count = 1;
+            count = 1; //计数器重置为1
         }
-        if (count == 1)
+        if (count == 1) //保存每页第一个学生的指针
         {
             page = (ugnode **)realloc(page, (cur + 1) * sizeof(ugnode *));
             page[cur] = uPtr;
         }
         uPtr = uPtr->next;
     }
-    end = cur;
-    cur = 0;
+    end = cur; //保存最后一页的页数
+    cur = 0;   //当前页数
     while (1)
     {
         system("cls");
@@ -107,7 +107,7 @@ void showAllUg()
     free(page);
 }
 
-void showAllPg()
+void showAllPg() //分页输出所有研究生信息
 {
     int count = 0, cur = 0, end = 0, opt = 0;
     pgnode **page = NULL;
@@ -184,7 +184,7 @@ void showAllPg()
     free(page);
 }
 
-void stuClaInfor()
+void stuClaInfor() //通过班级查询全班学生信息
 {
     char cla[20];
     ugnode *p = ugHead;
@@ -242,7 +242,7 @@ void stuClaInfor()
     }
 }
 
-void findInfor()
+void findInfor() //通过学号或姓名查找学生信息
 {
     ugnode *p;
     pgnode *q;
@@ -306,7 +306,7 @@ void findInfor()
     }
 }
 
-int serchUgName(char nameTemp[])
+int serchUgName(char nameTemp[]) //查找并输出同班级学生的信息
 {
     int flag = 0;
     ugnode *uPtr = ugHead->next;
@@ -324,7 +324,7 @@ int serchUgName(char nameTemp[])
     return flag;
 }
 
-int serchPgName(char nameTemp[])
+int serchPgName(char nameTemp[]) //查找并输出同班级学生的信息
 {
     int flag = 0;
     pgnode *pPtr = pgHead->next;
@@ -342,7 +342,7 @@ int serchPgName(char nameTemp[])
     return flag;
 }
 
-void failStu()
+void failStu() //通过班级查找课程不及格的学生信息
 {
     char classTemp[20];
     int ff;
@@ -363,23 +363,19 @@ void failStu()
         q = setPClassList(classTemp);
 
         if (p->next != NULL)
-        {
             unFailStu(p); //进入该函数选择并输出不及格信息
-        }
         else if (q->next != NULL)
-        {
             pnFailStu(q);
-        }
         else
         {
             printf("该班级不存在!\n");
             system("pause");
         }
-        newListDestroy(p, q);
+        listDestroy(&p, &q);
     }
 }
 
-void unFailStu(ugnode *p)
+void unFailStu(ugnode *p) //输出不及格的学生信息
 {
     ugnode *pp;
     int flag, ff, item;
@@ -474,7 +470,7 @@ void unFailStu(ugnode *p)
     }
 }
 
-void pnFailStu(pgnode *q)
+void pnFailStu(pgnode *q) //输出不及格的学生信息
 {
     pgnode *pp;
     int flag, ff, item;

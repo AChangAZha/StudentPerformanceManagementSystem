@@ -55,7 +55,7 @@ void scoreSearch() //查询学生成绩
     }
 }
 
-void inputScore()
+void inputScore() //输入成绩
 {
     int num, fi;
     ugnode *uPtr;
@@ -116,7 +116,7 @@ void inputScore()
                         printf("成绩取值范围为0-100，请重新输入：");
                 } while (uPtr->data.cLanguguage < -1 || uPtr->data.cLanguguage > 100);
             }
-            calculate();
+            calculate(); //计算总成绩、排名
             system("cls");
             printf("第%d位学生成绩录入结束\n", fi);
             outputUgScore(uPtr);
@@ -155,7 +155,7 @@ void inputScore()
                         printf("成绩取值范围为0-100，请重新输入：");
                 } while (pPtr->data.thesis < -1 || pPtr->data.thesis > 100);
             }
-            calculate();
+            calculate(); //计算总成绩、排名
             system("cls");
             printf("第%d位学生成绩录入结束\n", fi);
             outputPgScore(pPtr);
@@ -166,7 +166,7 @@ void inputScore()
     }
 }
 
-void alterScore()
+void alterScore() //修改成绩
 {
     int uflag = 0, pflag = 0, num, item, opt;
     ugnode *uPtr = NULL;
@@ -252,7 +252,7 @@ void alterScore()
             }
             }
             system("cls");
-            calculate();
+            calculate(); //计算总成绩、排名
             outputUgScore(uPtr);
             printf("\n修改成功！请选择下一操作（1.继续修改 2.退出）：");
             do
@@ -317,7 +317,7 @@ void alterScore()
             }
             }
             system("cls");
-            calculate();
+            calculate(); //计算总成绩、排名
             outputPgScore(pPtr);
             printf("修改成功！请选择下一操作（1.继续修改 2.退出）：");
             do
@@ -336,7 +336,7 @@ void alterScore()
     }
 }
 
-void deleteScore()
+void deleteScore() //删除成绩
 {
     int n, fi;
     ugnode *p;
@@ -364,7 +364,7 @@ void deleteScore()
                 p->data.english = -1;
                 p->data.cLanguguage = -1;
                 printf("\n删除成功！\n");
-                calculate();
+                calculate(); //计算总成绩、排名
             }
             printf("请选择下一操作（1.继续删除其他学生成绩 2.退出 ）：");
             do
@@ -384,7 +384,7 @@ void deleteScore()
                 q->data.compCourse = -1;
                 q->data.thesis = -1;
                 printf("\n删除成功！\n");
-                calculate();
+                calculate(); //计算总成绩、排名
             }
             printf("请选择下一操作（1.继续删除其他学生成绩 2.退出 ）：");
             do

@@ -1,5 +1,5 @@
-#ifndef STATISTICS_H
-#define STATISTICS_H
+#ifndef RESULTSTATISTICS_H
+#define RESULTSTATISTICS_H
 #include "model.h"
 
 ugnode *copyUGList();

@@ -10,7 +10,6 @@ int saveToUgtxt(FILE *ugFile);
 int saveToUgdat(FILE *ugFile);
 int saveToPgtxt(FILE *pgFile);
 int saveToPgdat(FILE *pgFile);
-void listDestroy();
 int saveToFile();
 
 #endif

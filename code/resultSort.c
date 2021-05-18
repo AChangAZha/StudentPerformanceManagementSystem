@@ -5,7 +5,7 @@
 #include <string.h>
 #include "tool.h"
 
-void scoreSort()
+void scoreSort() //查看全校排名
 {
     ugnode *uSortCur = NULL, *uSortPre = NULL, *uOri = NULL, *uTmp = NULL;
     pgnode *pSortCur = NULL, *pSortPre = NULL, *pOri = NULL, *pTmp = NULL;
@@ -120,7 +120,7 @@ void scoreSort()
     }
 }
 
-int classSort()
+int classSort() //查看班级排名
 {
     ugnode *uSortCur = NULL, *uSortPre = NULL, *uOri = NULL, *uTmp = NULL, *ugClass = NULL;
     pgnode *pSortCur = NULL, *pSortPre = NULL, *pOri = NULL, *pTmp = NULL, *pgClass = NULL;
@@ -211,12 +211,12 @@ int classSort()
     }
     else
         printf("\n该班级不存在！\n");
-    newListDestroy(ugClass, pgClass); //结束后销毁新链表
+    listDestroy(&ugClass, &pgClass); //结束后销毁新链表
     system("pause");
     return 1;
 }
 
-void recoverUList()
+void recoverUList() //恢复排序后的本科生链表
 {
     ugnode *uSortPre = NULL, *uTmp = NULL, *uOri = NULL, *uSortCur = NULL;
     int uflag = 0;
@@ -251,7 +251,7 @@ void recoverUList()
     }
 }
 
-void recoverPList()
+void recoverPList() //恢复排序后的研究生链表
 {
     pgnode *pSortCur = NULL, *pTmp = NULL, *pOri = NULL, *pSortPre = NULL;
     int pflag = 0;

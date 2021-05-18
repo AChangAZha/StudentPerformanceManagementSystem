@@ -8,7 +8,7 @@
 #include "resultStatistics.h"
 #include "inquire.h"
 
-void outputMainMenu()
+void outputMainMenu() //输出主菜单
 {
     printf("----------------------------------------------\n");
     printf("               学生成绩管理系统                 \n");
@@ -20,7 +20,7 @@ void outputMainMenu()
     printf("----------------------------------------------\n");
 }
 
-int initiateMenu()
+int initiateMenu() //系统初始化失败菜单
 {
     int item = 0;
     printf("----------------------------------------------\n");
@@ -36,7 +36,7 @@ int initiateMenu()
     return item;
 }
 
-int readTxtMenu()
+int readTxtMenu() //文件读取失败菜单
 {
     int item = 0;
     printf("----------------------------------------------\n");
@@ -53,7 +53,7 @@ int readTxtMenu()
     return item;
 }
 
-int readDatMenu()
+int readDatMenu() //文件读取失败菜单
 {
     int item = 0;
     printf("----------------------------------------------\n");
@@ -71,7 +71,7 @@ int readDatMenu()
     return item;
 }
 
-int saveMenu()
+int saveMenu() //文件保存失败菜单
 {
     int item = 0;
     printf("----------------------------------------------\n");
@@ -88,7 +88,7 @@ int saveMenu()
     return item;
 }
 
-int dataManageMenu()
+int dataManageMenu() //数据维护管理菜单
 {
     int item = 0;
     printf("----------------------------------------------\n");
@@ -119,7 +119,7 @@ int dataManageMenu()
     return item;
 }
 
-int inforManageMenu()
+int inforManageMenu() //基本资料数据维护管理菜单
 {
     int item = 0;
     printf("----------------------------------------------\n");
@@ -156,7 +156,7 @@ int inforManageMenu()
     return item;
 }
 
-int addStuMenu()
+int addStuMenu() //添加学生菜单
 {
     int item = 0;
     printf("----------------------------------------------\n");
@@ -185,7 +185,7 @@ int addStuMenu()
     return item;
 }
 
-int scoreManageMenu()
+int scoreManageMenu() //成绩数据的维护管理菜单
 {
     int item = 0;
     printf("----------------------------------------------\n");
@@ -220,7 +220,7 @@ int scoreManageMenu()
     return item;
 }
 
-int sortMenu()
+int sortMenu() //查看排名菜单
 {
     int item = 0;
     printf("----------------------------------------------\n");
@@ -250,7 +250,7 @@ int sortMenu()
     return item;
 }
 
-int inquireMenu()
+int inquireMenu() //查询学生信息菜单
 {
     int item = 0;
     printf("----------------------------------------------\n");
@@ -288,7 +288,7 @@ int inquireMenu()
     return item;
 }
 
-int outputAllStuMenu()
+int outputAllStuMenu() //输出全校学生菜单
 {
     int item = 0;
     printf("-----------------------------------------------------\n");
@@ -315,7 +315,7 @@ int outputAllStuMenu()
     return item;
 }
 
-int statisticsMenu()
+int statisticsMenu() //统计成绩菜单
 {
     int item = 0;
     printf("----------------------------------------------\n");
@@ -346,7 +346,7 @@ int statisticsMenu()
     return item;
 }
 
-int choseStuCate()
+int choseStuCate() //统计平均成绩菜单
 {
     int item = 0;
     printf("--------------------------------------------------------\n");
