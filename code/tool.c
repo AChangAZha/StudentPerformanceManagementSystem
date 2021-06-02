@@ -445,8 +445,8 @@ void about() //关于
 {
     printf("----------------------------------------------------\n");
     printf("                  学生成绩管理系统                 \n");
-    printf("               version 1.5.1 Release              \n");
-    printf("                       2021/5                     \n");
+    printf("               version 1.5.2 Release              \n");
+    printf("                       2021/6                     \n");
     printf("                    东莞理工学院                   \n");
     printf("                  网络空间安全学院                 \n");
     printf("                   2020软件卓越2班                 \n");

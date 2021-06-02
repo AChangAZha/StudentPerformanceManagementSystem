@@ -65,7 +65,7 @@ void classRankCalculate() //计算班级排名
             uPtr->data.classRank = -1;
         uPtr = uPtr->next;
     }
-    while (pPtr != NULL) //计算研究生总成绩
+    while (pPtr != NULL)
     {
         if (pPtr->data.totalScore != -1)
         {

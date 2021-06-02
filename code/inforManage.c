@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include "inquire.h"
 #include "tool.h"
+#include "scoreManage.h"
 
 void addUgNode() //添加本科生
 {
@@ -407,6 +408,7 @@ int deleteData() //删除学生
         if (uTmp->next == NULL)
             ugTail = uPtr->next;
         free(uTmp);
+        calculate();
         printf("删除成功！\n");
     }
     else if (pflag == 1)
@@ -427,6 +429,7 @@ int deleteData() //删除学生
         if (pTmp->next == NULL)
             pgTail = pPtr->next;
         free(pTmp);
+        calculate();
         printf("删除成功！\n");
     }
     else
